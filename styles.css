@@ -847,6 +847,9 @@ body.no-scroll {
     .profile-frame {
         margin: 0 auto;
     }
+    .scroll-indicator {
+        bottom: 4rem;
+    }
 
 }
 
