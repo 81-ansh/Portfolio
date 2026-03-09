@@ -850,6 +850,9 @@ body.no-scroll {
     .scroll-indicator {
         bottom: 4rem;
     }
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 
 }
 
