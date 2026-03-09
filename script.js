@@ -226,5 +226,4 @@ runLoader();
 setupMenuAndScroll();
 setupActiveNav();
 setupHUDParallax();
-setupSectionFadeScroll();
 // setupNetworkAnimation();
