@@ -20,6 +20,10 @@
     --font-display: "Orbitron", sans-serif; /* Added for Gamer Headers */
 }
 
+img, video, canvas {
+    max-width: 100%;
+    height: auto;
+}
 * {
   box-sizing: border-box;
 }
@@ -147,8 +151,11 @@ body.loading {
 
 /* --- LAYOUT UTILS --- */
 .container {
-  width: min(20000px, 92%);
-  margin: 0 auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 /* --- NAVIGATION --- */
