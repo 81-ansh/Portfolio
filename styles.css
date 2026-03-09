@@ -292,7 +292,6 @@ body.loading {
 .glitch-text {
     font-family: 'Ethnocentric';
     font-size: clamp(3rem, 7vw, 5.5rem);
-    word-break: break-word;
     line-height: 0.95;
     margin: 0;
     color: #FFFFFF;
