@@ -284,6 +284,7 @@ body.loading {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 3rem;
   align-items: center;
+    padding: 0 15px;
   min-height: 80vh;
 }
 
@@ -291,9 +292,11 @@ body.loading {
 .glitch-text {
     font-family: 'Ethnocentric';
     font-size: clamp(3rem, 7vw, 5.5rem);
+    word-break: break-word;
     line-height: 0.95;
     margin: 0;
     color: #FFFFFF;
+    text-align: left;
 }
 
 .glitch-text span {
@@ -384,6 +387,7 @@ body.loading {
 /* --- BUTTONS --- */
 .hero-actions {
   display: flex;
+    flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -816,16 +820,34 @@ body.no-scroll {
 
 /* --- RESPONSIVE --- */
 @media (max-width: 900px) {
-  .hero-layout, .about-grid, .skills-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .hero-layout { text-align: center; gap: 4rem; }
-  .hero-stats { justify-content: center; border-left: none; padding-left: 0; }
-  .hero-actions { justify-content: center; }
-  .profile-frame { margin: 0 auto; }
-  
-  .project-grid { grid-template-columns: 1fr; }
+
+    .hero-layout, .about-grid, .skills-container {
+        grid-template-columns: 1fr;
+    }
+
+    .glitch-text {
+        text-align: center;
+    }
+    .hero-layout {
+        text-align: center;
+        gap: 4rem;
+        padding: 0 15px;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        border-left: none;
+        padding-left: 0;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .profile-frame {
+        margin: 0 auto;
+    }
+
 }
 
 @media (max-width: 760px) {
