@@ -81,7 +81,6 @@ const popupImg = document.getElementById("certImage");
 const verifyBtn = document.getElementById("verifyBtn");
 const closeBtn = document.querySelector(".cert-close");
 
-
 if (popup && popupImg && certButtons.length) {
 
     certButtons.forEach(button => {
@@ -97,29 +96,24 @@ if (popup && popupImg && certButtons.length) {
             verifyBtn.href = verifyLink;
 
             popup.classList.add("active");
+            body.classList.add("no-scroll");
 
         });
 
     });
 
-}
-
-if (closeBtn) {
-
-    closeBtn.addEventListener("click", () => {
-        popup.classList.remove("active");
-    });
-
-}
-
-if (popup) {
+    if (closeBtn) {
+        closeBtn.addEventListener("click", () => {
+            popup.classList.remove("active");
+            body.classList.remove("no-scroll");
+        });
+    }
 
     popup.addEventListener("click", (e) => {
-
         if (e.target === popup) {
             popup.classList.remove("active");
+            body.classList.remove("no-scroll");
         }
-
     });
 
 }
