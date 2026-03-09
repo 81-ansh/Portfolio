@@ -81,7 +81,35 @@ const popupImg = document.getElementById("certImage");
 const verifyBtn = document.getElementById("verifyBtn");
 const closeBtn = document.querySelector(".cert-close");
 
+let scrollPosition = 0;
+
 if (popup && popupImg && certButtons.length) {
+
+    function openPopup(imgSrc, verifyLink) {
+
+        popupImg.src = imgSrc;
+        verifyBtn.href = verifyLink;
+
+        // lock page scroll (works on mobile)
+        scrollPosition = window.scrollY;
+        body.style.position = "fixed";
+        body.style.top = `-${scrollPosition}px`;
+        body.style.width = "100%";
+
+        popup.classList.add("active");
+    }
+
+    function closePopup() {
+
+        popup.classList.remove("active");
+
+        // restore scroll
+        body.style.position = "";
+        body.style.top = "";
+        body.style.width = "";
+
+        window.scrollTo(0, scrollPosition);
+    }
 
     certButtons.forEach(button => {
 
@@ -92,27 +120,26 @@ if (popup && popupImg && certButtons.length) {
             const imgSrc = this.getAttribute("data-cert");
             const verifyLink = this.getAttribute("data-verify");
 
-            popupImg.src = imgSrc;
-            verifyBtn.href = verifyLink;
-
-            popup.classList.add("active");
-            body.classList.add("no-scroll");
+            openPopup(imgSrc, verifyLink);
 
         });
 
     });
 
     if (closeBtn) {
-        closeBtn.addEventListener("click", () => {
-            popup.classList.remove("active");
-            body.classList.remove("no-scroll");
-        });
+        closeBtn.addEventListener("click", closePopup);
     }
 
     popup.addEventListener("click", (e) => {
         if (e.target === popup) {
-            popup.classList.remove("active");
-            body.classList.remove("no-scroll");
+            closePopup();
+        }
+    });
+
+    // ESC key close
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && popup.classList.contains("active")) {
+            closePopup();
         }
     });
 
