@@ -78,6 +78,7 @@ function animateStats(nodes) {
 const certButtons = document.querySelectorAll(".view-cert-btn");
 const popup = document.getElementById("certPopup");
 const popupImg = document.getElementById("certImage");
+const verifyBtn = document.getElementById("verifyBtn");
 const closeBtn = document.querySelector(".cert-close");
 
 
@@ -90,8 +91,10 @@ if (popup && popupImg && certButtons.length) {
             e.preventDefault();
 
             const imgSrc = this.getAttribute("data-cert");
+            const verifyLink = this.getAttribute("data-verify");
 
             popupImg.src = imgSrc;
+            verifyBtn.href = verifyLink;
 
             popup.classList.add("active");
 
