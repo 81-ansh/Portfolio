@@ -560,7 +560,7 @@ body.loading {
 
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
 }
@@ -570,8 +570,6 @@ body.loading {
     border: 3px solid transparent;
     border-radius: 20px;
     padding: 2rem;
-    max-width: 300px;
-    min-width: 200px;
     height: 180px;
     display: flex;
     justify-content: center;
