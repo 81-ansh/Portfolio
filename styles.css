@@ -826,6 +826,7 @@ body.no-scroll {
 
     .glitch-text {
         text-align: center;
+        font-size: clamp(3rem, 5vw, 5.5rem);
     }
     .hero-layout {
         text-align: center;
