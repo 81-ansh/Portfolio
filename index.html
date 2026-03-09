@@ -11,13 +11,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="preloader" id="preloader" aria-hidden="true">
-    <div class="loader-content">
-      <p class="loader-brand">as</p>
-      <div class="loader-track"><span id="loaderFill"></span></div>
-      <p class="loader-text"><span id="loaderPct">0</span>%</p>
-    </div>
-  </div>
+ 
 
   <canvas id="networkCanvas"></canvas>
 
@@ -40,14 +34,7 @@
               <a href="https://linkedin.com/in/ansh-sharma-a19296276" target="_blank" aria-label="LinkedIn">
                   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
               </a>
-              <a href="https://discord.gg/yourserver" target="_blank" aria-label="Discord">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037 19.736 19.736 0 0 0-4.885 1.515.069.069 0 0 0-.032.027C.533 9.048-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.947 2.419-2.157 2.419zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.086 2.157 2.419 0 1.334-.946 2.419-2.157 2.419z" /></svg>
-              </a>
-              <a href="mailto:yourname@email.com" aria-label="Email">
-                  <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
-                  </svg>
-              </a>
+              
           </div>
           <!-- ADD MENU BUTTON HERE -->
           <button class="menu-btn" aria-expanded="false" aria-label="Menu">
@@ -59,142 +46,153 @@
   </header>
 
   <main class="page-content">
-    <section class="hero reveal" id="home">
-      <div class="container hero-layout">
-        <div class="hero-text">
-            <h1 class="glitch-text">GAME<br><span>DEVELOPER</span></h1>
-          <h2 class="hero-name">Ansh Sharma</h2>
-          <p class="hero-tagline">CRAFTING IMMERSIVE DIGITAL EXPERIENCES</p>
-          
-         
+      <section class="hero reveal" id="home">
+          <div class="container hero-layout">
+              <div class="hero-text">
+                  <h1 class="glitch-text">GAME<br><span>DEVELOPER</span></h1>
+                  <h2 class="hero-name">Ansh Sharma</h2>
+                  <p class="hero-tagline">CRAFTING IMMERSIVE DIGITAL EXPERIENCES</p>
 
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">VIEW PROJECTS</a>
-            <a class="btn btn-outline" href="#contact">CONTACT ME</a>
+
+
+                  <div class="hero-actions">
+                      <a class="btn btn-primary" href="#projects">VIEW PROJECTS</a>
+                      <a class="btn btn-outline" href="#contact">CONTACT ME</a>
+                  </div>
+              </div>
+
+
           </div>
-        </div>
+          <div class="scroll-indicator">SCROLL</div>
+      </section>
 
-    
-      </div>
-      <div class="scroll-indicator">SCROLL</div>
-    </section>
-
-    <section class="section reveal" id="about">
-      <div class="container">
-        <h2 class="section-title">PLAYER PROFILE</h2>
-        <div class="about-grid">
-          <div class="terminal-window">
-            <div class="terminal-header">
-              <div class="dots"><span></span><span></span><span></span></div>
-              <span class="terminal-title">about.exe</span>
-            </div>
-            <div class="terminal-body">
-              <p class="command">$ cat about.txt</p>
-              <p>A creative Game Developer specializing in Unity and immersive gameplay experiences. I bridge the gap between technical precision and artistic vision to build games that engage, challenge, and inspire players.</p>
-              <p>Recently graduated with a B.Tech in Computer Science from Jamia Hamdard University. My expertise lies in developing polished game mechanics and performance-optimized systems.</p>
-              <p class="command">$ ./expertise.sh --display</p>
-              <ul class="skill-list">
-                <li>Unity Engine (2D/3D Pipeline)</li>
-                <li>C# & Object-Oriented Programming</li>
-                <li>Game Design & Level Architecture</li>
-                <li>Performance Optimization & Debugging</li>
-              </ul>
-              <p class="command">$ echo $STATUS</p>
-              <p class="status-text">Ready to create exceptional gaming experiences_</p>
-            </div>
+      <section class="section reveal" id="about">
+          <div class="container">
+              <h2 class="section-title">PLAYER PROFILE</h2>
+              <div class="about-grid">
+                  <div class="terminal-window">
+                      <div class="terminal-header">
+                          <div class="dots"><span></span><span></span><span></span></div>
+                          <span class="terminal-title">about.exe</span>
+                      </div>
+                      <div class="terminal-body">
+                          <p class="command">$ cat about.txt</p>
+                          <p>A creative Game Developer specializing in Unity and immersive gameplay experiences. I bridge the gap between technical precision and artistic vision to build games that engage, challenge, and inspire players.</p>
+                          <p>Recently graduated with a B.Tech in Computer Science from Jamia Hamdard University. My expertise lies in developing polished game mechanics and performance-optimized systems.</p>
+                          <p class="command">$ ./expertise.sh --display</p>
+                          <ul class="skill-list">
+                              <li>Unity Engine (2D/3D Pipeline)</li>
+                              <li>C# & Object-Oriented Programming</li>
+                              <li>Game Design & Level Architecture</li>
+                              <li>Performance Optimization & Debugging</li>
+                          </ul>
+                          <p class="command">$ echo $STATUS</p>
+                          <p class="status-text">Ready to create exceptional gaming experiences_</p>
+                      </div>
+                  </div>
+              </div>
+              <div class="action-bar">
+                  <a href="#" class="btn btn-primary">DOWNLOAD RESUME</a>
+              </div>
           </div>
-        </div>
-        <div class="action-bar">
-          <a href="#" class="btn btn-primary">DOWNLOAD RESUME</a>
-        </div>
+      </section>
+
+      <section class="section reveal" id="skills">
+          <div class="container">
+              <h2 class="section-title">SKILLS</h2>
+
+              <div class="skills-grid">
+                  <!-- Unreal -->
+                  <div class="skill-tile">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine">
+                  </div>
+
+                  <!-- C++ -->
+                  <div class="skill-tile">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg" alt="C++">
+                  </div>
+
+                  <!-- GitHub -->
+                  <div class="skill-tile">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+
+                  </div>
+
+                  <!-- Git -->
+                  <div class="skill-tile">
+                      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+
+                  </div>
+
+
+              </div>
+          </div>
+      </section>
+
+
+
+      <section class="section reveal" id="certificates">
+
+          <div class="container">
+
+              <h2 class="section-title">
+                  <span>05.</span> Certificates
+              </h2>
+
+              <div class="certificate-grid">
+
+                  <div class="certificate-tile">
+
+                      <h3>Unreal Engine 5 - Gameplay Ability System - Top Down RPG</h3>
+                      <p>Udemy • 106 Hours</p>
+
+                      <a href="#" class="view-cert-btn" data-cert="images/Unreal Engine 5 - Gameplay Ability System - Top Down RPG.jpg">
+                          View Certificate
+                      </a>
+
+                  </div>
+
+              </div>
+
+          </div>
+
+      </section>
+
+      <div class="cert-popup" id="certPopup">
+          <span class="cert-close">&times;</span>
+          <img id="certImage" src="" alt="Certificate">
       </div>
-    </section>
 
-    <section class="section reveal" id="skills">
-        <div class="container">
-            <h2 class="section-title">SKILLS</h2>
+      <section class="section reveal" id="contact">
+          <div class="container">
 
-            <div class="skills-grid">
-                <!-- Unreal -->
-                <div class="skill-tile">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine">
-                </div>
+              <h2 class="section-title">CONTACT</h2>
 
-                <!-- C++ -->
-                <div class="skill-tile">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg" alt="C++">
-                </div>
+              <div class="contact-card">
 
-                <!-- GitHub -->
-                <div class="skill-tile">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                  <div class="contact-item">
+                      <span class="contact-label">EMAIL</span>
+                      <p>anshjangra15@gmail.com</p>
+                  </div>
 
-                </div>
+                  <div class="contact-item">
+                      <span class="contact-label">LOCATION</span>
+                      <p>South Delhi, India</p>
+                  </div>
 
-                <!-- Git -->
-                <div class="skill-tile">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                  <div class="contact-item">
+                      <span class="contact-label">LINKEDIN</span>
+                      <p>linkedin.com/in/ansh-sharma-a19296276</p>
+                  </div>
 
-                </div>
+                  <a href="mailto:anshjangra15@gmail.com" class="btn btn-primary">
+                      SEND EMAIL
+                  </a>
 
+              </div>
 
-            </div>
-        </div>
-    </section>
-
-    
-
-    <section class="section reveal" id="certificate">
-        <div class="container">
-
-            <h2 class="section-title">CERTIFICATES</h2>
-
-            <div class="certificate-grid">
-
-                <div class="certificate-card">
-
-                    <div class="certificate-info">
-                        <h3>Unreal Engine 5 - Gameplay Ability System - Top Down RPG</h3>
-                        <p>Udemy • 106 Hours</p>
-                        <a href="https://www.udemy.com/certificate/UC-7ea651a4-ebb3-4ec0-bee4-e639fafa727d/" class="btn-sm">VIEW CERTIFICATE</a>
-                    </div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <section class="section reveal" id="contact">
-        <div class="container">
-
-            <h2 class="section-title">CONTACT</h2>
-
-            <div class="contact-card">
-
-                <div class="contact-item">
-                    <span class="contact-label">EMAIL</span>
-                    <p>anshjangra15@gmail.com</p>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-label">LOCATION</span>
-                    <p>South Delhi, India</p>
-                </div>
-
-                <div class="contact-item">
-                    <span class="contact-label">LINKEDIN</span>
-                    <p>linkedin.com/in/ansh-sharma-a19296276</p>
-                </div>
-
-                <a href="mailto:anshjangra15@gmail.com" class="btn btn-primary">
-                    SEND EMAIL
-                </a>
-
-            </div>
-
-        </div>
-    </section>
+          </div>
+      </section>
   </main>
 
   <script src="script.js"></script>
