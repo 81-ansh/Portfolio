@@ -1,18 +1,23 @@
+@font-face {
+    font-family: 'Ethnocentric';
+    src: url('Ethnocentric-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 :root {
-  /* Updated Palette: Deep Void & Neon Green */
-  --bg: #020610;
-  --surface: #0a1428;
-  --surface-2: #101e3a;
-  --text: #ffffff;
-  --muted: #8899a6;
-  --line: rgba(0, 255, 157, 0.15); /* Tech grid lines */
-  --accent: #00ff9d; /* The Signature Neon Green */
-  --accent-glow: rgba(0, 255, 157, 0.35);
-  --accent-2: #00a3ff; /* Secondary Cyber Blue */
-  
-  /* Typography */
-  --font-main: "Space Grotesk", sans-serif;
-  --font-display: "Orbitron", sans-serif; /* Added for Gamer Headers */
+    /* Updated Palette: Deep Void & Neon Green */
+    --bg: #020610;
+    --surface: #0a1428;
+    --surface-2: #101e3a;
+    --text: #ffffff;
+    --muted: #8899a6;
+    --line: rgba(0, 255, 157, 0.15); /* Tech grid lines */
+    --accent: #8B5CF6; /* The Signature Neon Green */
+    --accent-2: #00a3ff; /* Secondary Cyber Blue */
+    /* Typography */
+    --font-main: "Space Grotesk", sans-serif;
+    --font-display: "Orbitron", sans-serif; /* Added for Gamer Headers */
 }
 
 * {
@@ -22,6 +27,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 
 body {
   margin: 0;
@@ -47,6 +53,7 @@ body.loading {
 
 /* Updated Blobs to be subtle ambient glow */
 .blob {
+    display: none;
   position: absolute;
   border-radius: 999px;
   filter: blur(80px); /* Increased blur for diffusal */
@@ -72,15 +79,14 @@ body.loading {
 
 /* Tech Grid with Radial Mask */
 .grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 50px 50px;
-  mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
-  opacity: 0.5;
-  z-index: -1;
+    display: none; /* Add this line */
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 50px 50px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+    opacity: 0.5;
+    z-index: -1;
 }
 
 /* --- PRELOADER --- */
@@ -141,87 +147,130 @@ body.loading {
 
 /* --- LAYOUT UTILS --- */
 .container {
-  width: min(1200px, 92%);
+  width: min(20000px, 92%);
   margin: 0 auto;
 }
 
 /* --- NAVIGATION --- */
 .site-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid var(--line);
-  background: rgba(2, 6, 16, 0.85);
-  backdrop-filter: blur(12px);
+    position: fixed; /* Pins the navbar to the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Ensures it stays on top of all other content */
+    padding: 0.5rem 2rem 0.2rem 2rem; /* top right bottom left */
+    background: #ffffff;
 }
 
 .nav-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alignment starts from the left */
+    width: 100%;
+    max-width: 100%; /* Ensures it spans the full screen width */
+    margin: 0;
 }
 
+/* Logo Styles */
 .brand {
-  color: var(--text);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 2px;
+    color: #000000 !important;
+    transform: translateY(-6px);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 2.5rem; /* Slightly larger like the image */
+    font-weight: 800;
+    letter-spacing: -1px; /* Tighter letter spacing for that "Bithell" look */
+    line-height: 1;
 }
 
 .brand span {
-  color: var(--accent);
+    color: #000000 !important;
 }
 
 .site-nav {
-  display: flex;
-  gap: 2rem;
+    display: flex;
+    align-items: center; /* ensures links sit in the middle */
+    gap: 3.0rem;
+    font-family: 'Ethnocentric';
+    margin-left: auto; /* Pushes links to the right of the logo */
+    margin-right: auto; /* Centers the links between logo and icons */
 }
 
-.site-nav a {
-  position: relative;
-  color: var(--muted);
-  text-decoration: none;
-  font-family: var(--font-display);
-  font-size: 0.8rem;
-  letter-spacing: 1px;
-  transition: color 0.3s ease;
+    .site-nav a {
+        color: #000000;
+        text-decoration: none;
+        font-size: 1.2rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center; /* vertical centering */
+        line-height: 1;
+        transition: color 0.2s ease;
+    }
+
+/* Underline effect for 'Home' or Active */
+        .site-nav a.active {
+            color: #7138F5;
+        }
+
+/* Social Icons Container */
+/* Add this class to your HTML for the icons on the far right */
+.social-links {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
 }
 
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -5px;
-  width: 100%;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-
-.site-nav a:hover,
-.site-nav a.active {
-  color: var(--text);
-}
-
-.site-nav a:hover::after,
-.site-nav a.active::after {
-  transform: scaleX(1);
+.social-links i, .social-links svg {
+    color: #000000;
+    width: 24px;
+    height: 24px;
 }
 
 .menu-btn {
-  display: none;
-  border: 1px solid var(--line);
-  color: var(--accent);
-  background: rgba(0, 255, 157, 0.05);
-  border-radius: 4px;
-  padding: 0.5rem 1rem;
-  font-family: var(--font-display);
+    display: none;
+    background: transparent;
+    border: none;
+    color: #000000;
+    padding: 0.5rem 1rem;
+    font-family: 'Ethnocentric';
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.site-nav.open ~ .menu-btn {
+    color: var(--accent);
+}
+
+/* --- MOBILE NAVBAR --- */
+@media (max-width: 1300px) {
+
+    .site-nav {
+        display: none; /* hide links */
+    }
+
+    .social-links {
+        display: none; /* hide icons */
+    }
+
+    .menu-btn {
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    .site-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #ffffff;
+        padding: 1.5rem;
+        border-radius: 10px;
+        gap: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
 }
 
 /* --- HERO SECTION (Updated for HUD) --- */
@@ -240,25 +289,24 @@ body.loading {
 
 /* Glitch Text Header */
 .glitch-text {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  line-height: 0.95;
-  margin: 0;
-  color: var(--text);
-  text-transform: uppercase;
+    font-family: 'Ethnocentric';
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.95;
+    margin: 0;
+    color: #FFFFFF;
 }
 
 .glitch-text span {
-  color: var(--accent);
-  text-shadow: 0 0 25px var(--accent-glow);
+  color: #FFFFFF;
+  text-shadow: none;
 }
 
 .hero-name {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  letter-spacing: 4px;
-  margin: 1.5rem 0 0.5rem;
-  color: var(--text);
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    margin: 1.5rem 0 0.5rem;
+    color: #8B5CF6;
 }
 
 .hero-tagline {
@@ -507,6 +555,57 @@ body.loading {
 .info-card .val { font-family: var(--font-display); font-size: 1.5rem; color: var(--accent); display: block; }
 .info-card .lbl { font-size: 0.8rem; color: var(--muted); }
 
+
+/* SKILLS SECTION */
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.skill-tile {
+    background: #010101;
+    border: 3px solid transparent;
+    border-radius: 20px;
+    padding: 2rem;
+    max-width: 300px;
+    min-width: 200px;
+    height: 180px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+    .skill-tile img {
+        width: 100px;
+        height: 100px;
+        filter: brightness(0) invert(1);
+        margin: 0;
+    }
+
+    .skill-tile p {
+        font-family: var(--font-display);
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    /* Hover */
+
+    .skill-tile:hover {
+        background: #eeeeee;
+        border-color: var(--accent); /* border appears */
+        box-shadow: 0 0 25px var(--accent-glow);
+    }
+
+        .skill-tile:hover img {
+            /* back to original (black) */
+            filter: brightness(0);
+        }
+
+
 /* --- EXPERIENCE & CARDS --- */
 .timeline-v2, .project-grid, .achieve-grid {
   display: grid;
@@ -572,19 +671,46 @@ body.loading {
   box-shadow: 0 0 10px var(--accent-glow);
 }
 
-/* --- FOOTER --- */
-.site-footer {
-  border-top: 1px solid var(--line);
-  padding: 3rem 0;
-  text-align: center;
-  background: #01040a;
+/* --- CONTACT --- */
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    margin-top: 3rem;
+    align-items: center;
 }
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 2rem;
-  color: var(--accent);
-  margin-bottom: 1rem;
+.contact-info h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.contact-info p {
+    color: var(--muted);
+}
+
+.contact-card {
+    background: #0f0f0f;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.contact-label {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--accent);
 }
 
 /* --- ANIMATIONS --- */
@@ -647,11 +773,11 @@ body.loading {
 /* Remove the old .bg-layer, .blob, .grid styles if you want to save space */
 
 #networkCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -5; /* Behind everything */
-  background: radial-gradient(circle at 50% 50%, #051937 0%, #020610 100%); /* Deep Blue/Black Gradient */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5; /* Behind everything */
+    background: #010101; /* Deep Blue/Black Gradient */
 }
