@@ -144,7 +144,18 @@ if (popup && popupImg && certButtons.length) {
     });
 
 }
+// ABOUT TEXT WORD HOVER EFFECT
+const paragraphs = document.querySelectorAll(".aboutParagraph");
 
+paragraphs.forEach(paragraph => {
+
+    const words = paragraph.innerText.split(" ");
+
+    paragraph.innerHTML = words
+        .map(word => `<span class="about-word">${word}</span>`)
+        .join(" ");
+
+});
 
 // 5. HUD PARALLAX
 function setupHUDParallax() {

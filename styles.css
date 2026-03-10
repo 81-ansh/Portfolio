@@ -12,18 +12,15 @@
     --surface-2: #101e3a;
     --text: #ffffff;
     --muted: #8899a6;
-    --line: rgba(0, 255, 157, 0.15); /* Tech grid lines */
+    --line: rgba(139, 92, 246, 0.35); /* Tech grid lines */
     --accent: #8B5CF6; /* The Signature Neon Green */
     --accent-2: #00a3ff; /* Secondary Cyber Blue */
     /* Typography */
     --font-main: "Space Grotesk", sans-serif;
+    --font-secondary: "Ethnocentric", sans-serif;
     --font-display: "Orbitron", sans-serif; /* Added for Gamer Headers */
 }
 
-img, video, canvas {
-    max-width: 100%;
-    height: auto;
-}
 * {
   box-sizing: border-box;
 }
@@ -151,11 +148,8 @@ body.loading {
 
 /* --- LAYOUT UTILS --- */
 .container {
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+  width: min(20000px, 92%);
+  margin: 0 auto;
 }
 
 /* --- NAVIGATION --- */
@@ -175,7 +169,7 @@ body.loading {
     justify-content: flex-start; /* Alignment starts from the left */
     width: 100%;
     max-width: 100%; /* Ensures it spans the full screen width */
-    margin: 0;
+    position: relative;
 }
 
 /* Logo Styles */
@@ -199,40 +193,27 @@ body.loading {
     align-items: center; /* ensures links sit in the middle */
     gap: 3.0rem;
     font-family: 'Ethnocentric';
-    margin-left: auto; /* Pushes links to the right of the logo */
-    margin-right: auto; /* Centers the links between logo and icons */
+    margin-left: auto;
 }
 
-    .site-nav a {
-        color: #000000;
-        text-decoration: none;
-        font-size: 1.2rem;
-        font-weight: 500;
-        display: flex;
-        align-items: center; /* vertical centering */
-        line-height: 1;
-        transition: color 0.2s ease;
-    }
+.site-nav a {
+    color: #000000;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center; /* vertical centering */
+    line-height: 1;
+    transition: color 0.2s ease;
+}
 
 /* Underline effect for 'Home' or Active */
-        .site-nav a.active {
-            color: #7138F5;
-        }
+.site-nav a.active {
+    color: #7138F5;
+}
 
 /* Social Icons Container */
 /* Add this class to your HTML for the icons on the far right */
-.social-links {
-    display: flex;
-    gap: 2.5rem;
-    align-items: center;
-}
-
-.social-links i, .social-links svg {
-    color: #000000;
-    width: 24px;
-    height: 24px;
-}
-
 .menu-btn {
     display: none;
     background: transparent;
@@ -247,37 +228,6 @@ body.loading {
 
 .site-nav.open ~ .menu-btn {
     color: var(--accent);
-}
-
-/* --- MOBILE NAVBAR --- */
-@media (max-width: 1300px) {
-
-    .site-nav {
-        display: none; /* hide links */
-    }
-
-    .social-links {
-        display: none; /* hide icons */
-    }
-
-    .menu-btn {
-        display: block;
-        margin-left: auto;
-        cursor: pointer;
-    }
-
-    .site-nav.open {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 70px;
-        right: 20px;
-        background: #ffffff;
-        padding: 1.5rem;
-        border-radius: 10px;
-        gap: 1rem;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
 }
 
 /* --- HERO SECTION (Updated for HUD) --- */
@@ -298,7 +248,7 @@ body.loading {
 /* Glitch Text Header */
 .glitch-text {
     font-family: 'Ethnocentric';
-    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-size: clamp(1rem, 7vw, 5.5rem);
     line-height: 0.95;
     margin: 0;
     color: #FFFFFF;
@@ -417,7 +367,6 @@ body.loading {
 }
 
 .btn-primary:hover {
-  transform: translateY(-3px);
   box-shadow: 0 0 40px;
 }
 
@@ -429,7 +378,22 @@ body.loading {
 
 .btn-outline:hover {
   background: rgba(0, 255, 157, 0.1);
-  transform: translateY(-3px);
+}
+.about-text{
+    font-size: 1.2rem;
+    font-family: var(--font-display);
+    line-height: 1.8;
+    max-width: 750px;
+}
+
+.about-word{
+    display: inline-block;
+    margin-right: 5px;
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.about-word:hover{
+    color: var(--accent);
 }
 
 /* --- SECTIONS COMMON --- */
@@ -603,9 +567,10 @@ body.loading {
 
 .certificate-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    justify-content: center;
 }
 
 .certificate-tile {
@@ -613,6 +578,7 @@ body.loading {
     border: 3px solid var(--accent);
     border-radius: 20px;
     padding: 2rem;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -761,44 +727,40 @@ body.no-scroll {
 
 /* --- CONTACT --- */
 
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    margin-top: 3rem;
-    align-items: center;
+.contact-icons {
+    display: flex;
+    justify-content: center;
+    gap: 2.5rem;
+    margin-top: 2rem;
 }
 
-.contact-info h3 {
-    font-family: var(--font-display);
+.contact-icons a {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    color: #FFFFFF;
+    transition: all 0.3s ease;
 }
 
-.contact-info p {
-    color: var(--muted);
-}
-
-.contact-card {
-    background: #0f0f0f;
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 10px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-}
-
-.contact-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.contact-label {
-    font-size: 0.7rem;
-    letter-spacing: 2px;
+.contact-icons a:hover {
     color: var(--accent);
+}
+.contact-email {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-family: var(--font-display);
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+}
+
+/* "Email" text */
+.contact-email span {
+    color: #8B5CF6;   /* purple */
+    margin-right: 10px;
+}
+
+/* actual email */
+.contact-email p {
+    display: inline;
+    color: #ffffff;   /* white */
 }
 
 /* --- ANIMATIONS --- */
@@ -825,16 +787,63 @@ body.no-scroll {
 }
 
 /* --- RESPONSIVE --- */
+
+@media (max-width: 1000px) {
+    .certificate-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 925px) {
+
+    /* hide desktop nav */
+    .site-nav {
+        display: none;
+    }
+
+    /* hide navbar icons */
+    .social-links {
+        display: none;
+    }
+
+    /* show menu button */
+    .menu-btn {
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+    }
+
+    /* dropdown menu */
+    .site-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        background: #FFFFFF;
+        border: 1px solid var(--accent);
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 6px;
+    }
+
+}
+
+  
 @media (max-width: 900px) {
 
-    .hero-layout, .about-grid, .skills-container {
+    .hero-layout,
+    .about-grid,
+    .skills-container {
         grid-template-columns: 1fr;
     }
 
     .glitch-text {
         text-align: center;
-        font-size: clamp(2.5rem, 2.7vw, 3rem);
     }
+    .hero-name{
+        font-size: clamp(1.5rem, 2.5vw, 2.5rem);
+    }
+
     .hero-layout {
         text-align: center;
         gap: 4rem;
@@ -854,33 +863,20 @@ body.no-scroll {
     .profile-frame {
         margin: 0 auto;
     }
+
     .scroll-indicator {
         bottom: 4rem;
     }
+
     .skills-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 
 }
-
-@media (max-width: 760px) {
-  .menu-btn { display: block; }
-  
-  .site-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 5%;
-    width: 200px;
-    flex-direction: column;
-    background: rgba(10, 20, 40, 0.95);
-    border: 1px solid var(--accent);
-    padding: 1rem;
-    gap: 1rem;
-    border-radius: 6px;
-  }
-  
-  .site-nav.open { display: flex; }
+@media (max-width: 650px) {
+    .certificate-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Remove the old .bg-layer, .blob, .grid styles if you want to save space */
