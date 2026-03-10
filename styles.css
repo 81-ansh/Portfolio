@@ -831,6 +831,13 @@ body.no-scroll {
   
 @media (max-width: 900px) {
 
+    .hero {
+        display: flex;
+        align-items: center;      /* vertical center */
+        justify-content: center;  /* horizontal center */
+        text-align: center;
+        min-height: 100vh;        /* full screen height */
+    }
     .hero-layout,
     .about-grid,
     .skills-container {
@@ -838,7 +845,7 @@ body.no-scroll {
     }
 
     .glitch-text {
-        font-size: clamp(2.5rem, 7vw, 3rem);
+        font-size: clamp(2.5rem, 10vw, 3rem);
         text-align: center
     }
     .hero-name{
