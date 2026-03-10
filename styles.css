@@ -166,7 +166,7 @@ body.loading {
 .nav-wrap {
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alignment starts from the left */
+    justify-content: space-between; /* Alignment starts from the left */
     width: 100%;
     max-width: 100%; /* Ensures it spans the full screen width */
     position: relative;
@@ -193,7 +193,6 @@ body.loading {
     align-items: center; /* ensures links sit in the middle */
     gap: 3.0rem;
     font-family: 'Ethnocentric';
-    margin-left: auto;
 }
 
 .site-nav a {
@@ -218,6 +217,7 @@ body.loading {
     display: none;
     background: transparent;
     border: none;
+    margin-left: auto;
     color: #000000;
     padding: 0.5rem 1rem;
     font-family: 'Ethnocentric';
@@ -795,16 +795,26 @@ body.no-scroll {
 }
 @media (max-width: 925px) {
 
+   
+
+    
+
+    
+
+}
+
+  
+@media (max-width: 900px) {
+
+    .site-header{
+        padding: 0.5rem 1rem 0.2rem 1rem;
+    }
+    
     /* hide desktop nav */
     .site-nav {
         display: none;
     }
-
-    /* hide navbar icons */
-    .social-links {
-        display: none;
-    }
-
+    
     /* show menu button */
     .menu-btn {
         display: block;
@@ -825,12 +835,7 @@ body.no-scroll {
         gap: 1rem;
         border-radius: 6px;
     }
-
-}
-
-  
-@media (max-width: 900px) {
-
+    
     .hero {
         display: flex;
         align-items: center;      /* vertical center */
@@ -838,6 +843,7 @@ body.no-scroll {
         text-align: center;
         min-height: 100vh;        /* full screen height */
     }
+    
     .hero-layout,
     .about-grid,
     .skills-container {
