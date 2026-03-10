@@ -90,11 +90,11 @@ if (popup && popupImg && certButtons.length) {
         popupImg.src = imgSrc;
         verifyBtn.href = verifyLink;
 
-        // lock page scroll (works on mobile)
+        // store scroll position
         scrollPosition = window.scrollY;
-        body.style.position = "fixed";
-        body.style.top = `-${scrollPosition}px`;
-        body.style.width = "100%";
+
+        // lock scroll
+        document.body.style.overflow = "hidden";
 
         popup.classList.add("active");
     }
@@ -104,9 +104,7 @@ if (popup && popupImg && certButtons.length) {
         popup.classList.remove("active");
 
         // restore scroll
-        body.style.position = "";
-        body.style.top = "";
-        body.style.width = "";
+        document.body.style.overflow = "";
 
         window.scrollTo(0, scrollPosition);
     }
@@ -142,8 +140,8 @@ if (popup && popupImg && certButtons.length) {
             closePopup();
         }
     });
-
 }
+
 // ABOUT TEXT WORD HOVER EFFECT
 const paragraphs = document.querySelectorAll(".aboutParagraph");
 
