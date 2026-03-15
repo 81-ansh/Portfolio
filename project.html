@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project Detail - Ansh Sharma</title>
+    <meta name="description" content="Project detail view for Ansh Sharma - Game Developer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<canvas id="networkCanvas"></canvas>
+
+<header class="site-header">
+    <div class="container nav-wrap">
+        <a class="brand" href="index.html#home">as</a>
+        <nav class="site-nav" aria-label="Primary navigation">
+            <a href="index.html#home">HOME</a>
+            <a href="index.html#skills">SKILLS</a>
+            <a href="index.html#projects" class="active">PROJECTS</a>
+            <a href="index.html#about">ABOUT</a>
+            <a href="index.html#certificates">CERTIFICATE</a>
+            <a href="index.html#contact">CONTACT</a>
+        </nav>
+        <button class="menu-btn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<main class="page-content project-detail-page">
+    <section class="section project-detail-section">
+        <div class="container">
+
+            <div class="project-popup-content project-detail-layout">
+                <!-- LEFT PANEL: Full-height media -->
+                <div class="project-left">
+                    <div class="project-media-main" id="mediaMain"></div>
+                    <div class="project-media-strip">
+                        <button class="media-arrow media-arrow-left" type="button">
+                            <i class="fa-solid fa-chevron-left"></i>
+                        </button>
+                        <div class="media-strip-inner" id="mediaStrip"></div>
+                        <button class="media-arrow media-arrow-right" type="button">
+                            <i class="fa-solid fa-chevron-right"></i>
+                        </button>
+                    </div>
+                    <div class="project-links" id="projectLinksDetail">
+                        <a id="githubLinkDetail" href="" class="project-btn github-btn" target="_blank" style="display: none;">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a id="itchioLinkDetail" href="" class="project-btn itchio-btn" target="_blank" style="display: none;">
+                            <i class="fab fa-itch-io"></i> itch.io
+                        </a>
+                    </div>
+                </div>
+
+                <!-- RIGHT PANEL: Game Info -->
+                <div class="project-right">
+                    <div class="project-details">
+                        <h2 id="detailTitle" class="accent-title"></h2>
+                        <p id="detailGameType" class="grey-text"></p>
+                        <h3>Tech used</h3>
+                        <ul id="detailTech" class="grey-text"></ul>
+                        <h3>Key Features</h3>
+                        <ul id="detailFeatures" class="grey-text"></ul>
+                        <h3>Description</h3>
+                        <p id="detailDesc" class="grey-text"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>

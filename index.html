@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
 </head>
 <body>
  
@@ -21,8 +24,9 @@
           <nav class="site-nav" aria-label="Primary navigation">
               <a href="#home" class="active">HOME</a>
               <a href="#skills">SKILLS</a>
+              <a href="#projects">PROJECTS</a>
               <a href="#about">ABOUT</a>
-              <a href="#certificates">CERTIFICATE</a>
+              <a href="#certificates">CERTIFICATES</a>
               <a href="#contact">CONTACT</a>
           </nav>
           <!-- ADD MENU BUTTON HERE -->
@@ -45,6 +49,8 @@
                       <a class="btn btn-outline" href="#contact">CONTACT ME</a>
                   </div>
               </div>
+              <div id="model-container"></div>
+              
           </div>
           <div class="scroll-indicator">SCROLL</div>
       </section>
@@ -57,24 +63,99 @@
                   <!-- Unreal -->
                   <div class="skill-tile">
                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine">
+                      <p>Unreal Engine</p>
                   </div>
                   <!-- C++ -->
                   <div class="skill-tile">
                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-plain.svg" alt="C++">
+                      <p>C++</p>
                   </div>
                   <!-- GitHub -->
                   <div class="skill-tile">
                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+                      <p>GitHub</p>
                   </div>
                   <!-- Git -->
                   <div class="skill-tile">
                       <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-
+                      <p>Git</p>
                   </div>
               </div>
           </div>
       </section>
 
+
+      <section class="section reveal" id="projects">
+          <div class="container">
+              <h2 class="section-title">PROJECTS</h2>
+
+             <div class="projects-grid">
+
+                 <div class="project-tile"
+                      data-video="https://www.youtube.com/watch?v=w9mijf-gKOg"
+                      data-shot1="images/Projects/ss1.png"
+                      data-shot2="images/Projects/ss2.png"
+                      data-shot3="images/Projects/ss2.png"
+                      data-shot4="images/Projects/ss1.png"
+                      data-title="AURA (Udemy)"
+                      data-gametype="Top-Down Action RPG"
+                      data-tech="Unreal Engine / C++ / Gameplay Ability System (GAS)"
+                      data-keyfeatures="Character Leveling / Attribute Progression System / Ability Unlocking and Upgrading / Cooldowns and Costs / Skill and Attribute Menus / Enemy AI with Behavior Trees / Enemy loot drops"
+                      data-desc="AURA is a top-down action RPG built in Unreal Engine 5 using C++ and the Gameplay Ability System (GAS). The game features a progression system where players gain experience by defeating enemies and level up to earn attribute points and spell points.
+                                Players can improve their character through an attribute system. Abilities are unlocked and upgraded through a skill menu using spell points, with each ability having its own cooldowns and resource costs managed through Gameplay Tags.
+                                The game also features enemy AI controlled using Behavior Trees with different behaviors. Enemies can drop pickups such as health and mana potions, adding resource management to the combat experience."
+                      data-github="https://github.com/81-ansh/GAS_RPG"
+                      data-itchio="https://81-ansh.itch.io/project1">
+                     <img src="images/Projects/Placeholder.png" alt="AURA project thumbnail">
+                     <h3>AURA (Udemy)</h3>
+                     <p class="project-tech">
+                         Unreal Engine / C++ / GAS
+                     </p>
+                 </div>
+                 <div class="project-tile"
+                      data-video="videos/rpg.mp4"
+                      data-shot1="images/rpg1.png"
+                      data-shot2="images/rpg2.png"
+                      data-shot3="images/rpg3.png"
+                      data-shot4="images/rpg4.png"
+                      data-title="CoinQuest"
+                      data-gametype="3D Arcade Evasion"
+                      data-tech="Unreal Engine / Blueprints / Behavior Tree"
+                      data-keyfeatures="Enemy AI using Behavior Tree / AI detection system based on player proximity / Melee attack system for enemies / Coin collection objective system / UI displaying level objective and coin count"
+                      data-desc="CoinQuest is a game built in Unreal Engine 5 where the player must collect a set number of coins to complete the level while avoiding enemies. 
+                                Enemies are controlled using Behavior Trees that allow them to detect the player within a certain range, chase the player, and perform melee attacks when close enough. Since the player cannot attack, the gameplay focuses on movement, evasion, and strategic pathing to survive while collecting all required coins.
+                                A UI system displays the objective and tracks how many coins remain to complete the level."
+                      data-github="https://github.com/81-ansh/CoinQuest"
+                      data-itchio="https://81-ansh.itch.io/project2">
+                     <img src="images/Projects/Placeholder.png" alt="CoinQuest project thumbnail">
+                     <h3>CoinQuest</h3>
+                     <p class="project-tech">
+                         Unreal Engine / Blueprints
+                     </p>
+                 </div>
+                 <div class="project-tile"
+                      data-video="videos/rpg.mp4"
+                      data-shot1="images/rpg1.png"
+                      data-shot2="images/rpg2.png"
+                      data-shot3="images/rpg3.png"
+                      data-title="Pong"
+                      data-gametype="Arcade Game"
+                      data-tech="Unreal Engine / Blueprints"
+                      data-keyfeatures="Player paddle control / Ball physics / Collision detection / Score tracking / AI opponent"
+                      data-desc="A classic Pong game implemented in Unreal Engine with Blueprints."
+                      data-github="https://github.com/81-ansh/Pong"
+                      data-itchio="https://81-ansh.itch.io/project3">
+                     <img src="images/Projects/Placeholder.png" alt="Pong project thumbnail">
+                     <h3>Pong</h3>
+                     <p class="project-tech">
+                         Unreal Engine / Blueprints
+                     </p>
+                 </div>
+
+             </div>
+         </div>
+     </section>
+      
 
       <section class="section reveal" id="about">
           <div class="container">
@@ -101,7 +182,7 @@
                       <p>Udemy • 106 Hours</p>
                       <a href="javascript:void(0)"
                          class="view-cert-btn"
-                         data-cert="images/Unreal_Engine_5_-_Gameplay_Ability_System_-_Top_Down_RPG.jpg"
+                         data-cert="images/Certificates/Unreal_Engine_5_-_Gameplay_Ability_System_-_Top_Down_RPG.jpg"
                          data-verify="https://www.udemy.com/certificate/UC-7ea651a4-ebb3-4ec0-bee4-e639fafa727d/">
                           View Certificate
                       </a>
