@@ -440,6 +440,19 @@ if (window.location.pathname.includes('project.html')) {
 
                 mediaStrip.appendChild(button);
             });
+
+            // Scroll active thumb into view
+            const activeBtn = mediaStrip.querySelector('.media-thumb-button.active');
+            if (activeBtn) {
+                const strip = mediaStrip;
+                const btnLeft = activeBtn.offsetLeft;
+                const btnWidth = activeBtn.offsetWidth;
+                const stripWidth = strip.offsetWidth;
+                strip.scrollTo({
+                    left: btnLeft - (stripWidth / 2) + (btnWidth / 2),
+                    behavior: 'smooth'
+                });
+            }
         }
 
         if (mediaItems.length) {

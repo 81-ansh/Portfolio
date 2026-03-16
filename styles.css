@@ -102,7 +102,7 @@ h2, h3 {
     transform: translateY(-6px);
     text-decoration: none;
     font-family: var(--font-display);
-    font-size: 2.5rem; /* Slightly larger like the image */ 
+    font-size: 2.5rem; /* Slightly larger like the image */
     font-weight: 800;
     letter-spacing: -1px; /* Tighter letter spacing for that "Bithell" look */
     line-height: 1;
@@ -260,14 +260,17 @@ h2, h3 {
 }
 
 .btn-outline {
+    font-weight: 700;
     background: transparent;
     border: 1px solid var(--accent);
     color: var(--accent);
 }
 
 .btn-outline:hover {
-    background: rgba(0, 255, 157, 0.1);
+    background: var(--accent);
+    color: #000;
 }
+
 .about-text{
     font-size: 1.2rem;
     user-select: none;
@@ -740,14 +743,37 @@ body.no-scroll {
 /*** PROJECT DETAIL PAGE ****/
 /* ========================= */
 
+body.project-page {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .project-detail-page {
     padding-top: 4.5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .project-detail-section {
     padding-top: 1.5rem;
     padding-bottom: 0;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.project-detail-section .container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
 }
 
 .project-detail-layout {
@@ -757,7 +783,9 @@ body.no-scroll {
     padding: 0;
     max-width: none;
     width: 100%;
-    min-height: calc(100vh - 7rem);
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
     align-items: stretch;
 }
 
@@ -765,18 +793,27 @@ body.no-scroll {
     display: flex;
     flex-direction: column;
     flex: 0 0 70%;
+    overflow: hidden;
+    min-height: 0;
+    justify-content: center;
 }
 
 .project-right {
     flex: 0 0 30%;
+    overflow-y: auto;
+    height: 100%;
+    scrollbar-width: none;
+}
+
+.project-right::-webkit-scrollbar {
+    display: none;
 }
 
 .project-media-main {
     flex: 0 0 auto;
     display: flex;
     align-items: flex-start;
-    justify-content: flex-start;
-    padding: 0 1.5rem 0 0;
+    justify-content: center;
     max-height: none;
 }
 
@@ -819,11 +856,24 @@ body.no-scroll {
     display: flex;
     gap: 0.75rem;
     overflow-x: auto;
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
     scrollbar-width: none;
     scrollbar-color: var(--accent) transparent;
     scroll-behavior: smooth;
+}
+
+.project-media-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    justify-content: center;
 }
 
 .media-thumb-button {
@@ -896,9 +946,9 @@ body.no-scroll {
     transform: translateY(0);
 }
 
-@keyframes bounce { 
-    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 
-    40% { transform: translateX(-50%) translateY(-10px); } 
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+    40% { transform: translateX(-50%) translateY(-10px); }
     60% { transform: translateX(-50%) translateY(-5px); }
 }
 
@@ -929,23 +979,62 @@ body.no-scroll {
     }
 }
 
+@media (max-width: 1200px) {
+
+    body.project-page {
+        overflow: auto;
+        height: auto;
+    }
+
+    .project-detail-page {
+        height: auto;
+        overflow: visible;
+    }
+
+    .project-detail-section {
+        overflow: visible;
+        height: auto;
+    }
+
+    .project-detail-section .container {
+        height: auto;
+        overflow: visible;
+    }
+
+    .project-detail-layout {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+
+    .project-left {
+        flex: 1 1 auto;
+        overflow: visible;
+    }
+
+    .project-right {
+        flex: 1 1 auto;
+        height: auto;
+        overflow: visible;
+    }
+}
+
 @media (max-width: 900px) {
 
     .hero-visual {
         display: none;
     }
-    
+
     .nav-wrap {
         padding: 0 1rem;
         width: 100%;
     }
-    
-    
+
     /* hide desktop nav */
     .site-nav {
         display: none;
     }
-    
+
     /* show menu button */
     .menu-btn {
         display: block;
@@ -963,12 +1052,12 @@ body.no-scroll {
         background: rgba(2, 6, 16, 0.85);
         border: 1px solid rgba(255, 255, 255, 0.1);
         backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);    
+        -webkit-backdrop-filter: blur(14px);
         padding: 1rem;
         gap: 1rem;
         border-radius: 6px;
     }
-    
+
     .hero {
         display: flex;
         align-items: center;
@@ -979,13 +1068,13 @@ body.no-scroll {
 
     .glitch-text {
         font-size: clamp(2.5rem, 10vw, 3rem);
-        text-align: center
+        text-align: center;
     }
-    
-    .hero-name{
+
+    .hero-name {
         font-size: clamp(1.5rem, 2.5vw, 2.5rem);
     }
-    
+
     .hero-actions {
         flex-direction: column;
         align-items: center;
@@ -1011,8 +1100,8 @@ body.no-scroll {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .project-popup-content{
-        flex-direction:column;
+    .project-popup-content {
+        flex-direction: column;
     }
 }
 
