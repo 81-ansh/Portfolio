@@ -183,7 +183,7 @@ h2, h3 {
     width: 100%;
     height: 100%;
     z-index: -1;
-    pointer-events: none;
+    pointer-events: auto;
 }
 
 /* Glitch Text Header */
@@ -395,6 +395,7 @@ h2, h3 {
     border-radius:12px;
     margin-bottom:1rem;
     display:block;
+    border: 2px solid #ffffff;
 }
 
 .project-tile h3{
@@ -776,8 +777,7 @@ body.no-scroll {
     align-items: flex-start;
     justify-content: flex-start;
     padding: 0 1.5rem 0 0;
-    height: 55vh;
-    max-height: 600px;
+    max-height: none;
 }
 
 .media-main-image,
@@ -789,11 +789,17 @@ body.no-scroll {
 }
 
 .media-main-image {
-    object-fit: contain;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
 }
 
 .media-main-frame {
     border: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
 }
 
 .project-media-strip {
@@ -802,7 +808,11 @@ body.no-scroll {
     justify-content: center;
     gap: 0.75rem;
     padding: 0.5rem 0;
-    margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
 }
 
 .media-strip-inner {
@@ -810,6 +820,10 @@ body.no-scroll {
     gap: 0.75rem;
     overflow-x: auto;
     flex: 1;
+    min-width: 0;
+    scrollbar-width: none;
+    scrollbar-color: var(--accent) transparent;
+    scroll-behavior: smooth;
 }
 
 .media-thumb-button {
@@ -1010,4 +1024,5 @@ body.no-scroll {
     height: 100%;
     z-index: -5; /* Behind everything */
     background: #010101; /* Deep Blue/Black Gradient */
+    pointer-events: none;
 }

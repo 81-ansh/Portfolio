@@ -605,12 +605,12 @@ if (!window.location.pathname.includes('project.html')) {
         let loadedModel = null;
 
         const loader = new THREE.GLTFLoader();
-        loader.load('Sword.glb', function(gltf) {
+        loader.load('models/Dragon.glb', function(gltf) {
             loadedModel = gltf.scene;
             scene.add(loadedModel);
-            loadedModel.scale.set(1, 1, 1);
-            loadedModel.position.set(-1.5, 150, 9);
-            loadedModel.rotation.set(0, 0.2, 0);
+            loadedModel.scale.set(40.25, 40.25, 40.25);
+            loadedModel.position.set(30, 180, 0);
+            loadedModel.rotation.set(-0.81, 3.07, -2.19);
 
             camera.position.z = 12;
             camera.lookAt(loadedModel.position);
@@ -642,7 +642,155 @@ if (!window.location.pathname.includes('project.html')) {
         pointLight.position.set(-1, -1, 1);
         scene.add(pointLight);
 
-        camera.position.z = 8;
+        // --- DEBUG DRAG TO POSITION ---
+        const DEBUG = false;
+        let isLeftDrag = false;
+        let isRightDrag = false;
+        let prevMouse = { x: 0, y: 0 };
+        let autoRotate = false; // starts with auto rotation on
+
+        if (DEBUG) {
+            const debugBox = document.createElement('div');
+            debugBox.style.cssText = `
+        position: fixed; top: 80px; left: 10px; z-index: 9999;
+        background: rgba(0,0,0,0.7); color: #a855f7;
+        font-family: monospace; font-size: 13px;
+        padding: 10px; border: 1px solid #a855f7; border-radius: 6px;
+        line-height: 1.8; min-width: 320px;
+    `;
+            document.body.appendChild(debugBox);
+
+            let editPosition = false;
+            let editRotation = false;
+
+            // Position toggle
+            const posBtn = document.createElement('button');
+            posBtn.style.cssText = `
+        position: fixed; top: 220px; left: 10px; z-index: 10000;
+        background: #555; color: #fff;
+        font-family: monospace; font-size: 13px; font-weight: bold;
+        padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
+        display: block; width: 180px; margin-bottom: 8px;
+    `;
+            posBtn.textContent = '📦 POSITION: OFF';
+            document.body.appendChild(posBtn);
+
+            // Rotation toggle
+            const rotBtn = document.createElement('button');
+            rotBtn.style.cssText = `
+        position: fixed; top: 260px; left: 10px; z-index: 10000;
+        background: #555; color: #fff;
+        font-family: monospace; font-size: 13px; font-weight: bold;
+        padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
+        display: block; width: 180px;
+    `;
+            rotBtn.textContent = '🔄 ROTATION: OFF';
+            document.body.appendChild(rotBtn);
+
+            posBtn.addEventListener('click', () => {
+                editPosition = !editPosition;
+                if (editPosition) editRotation = false; // only one active at a time
+                posBtn.textContent = editPosition ? '📦 POSITION: ON' : '📦 POSITION: OFF';
+                posBtn.style.background = editPosition ? '#22c55e' : '#555';
+                rotBtn.textContent = '🔄 ROTATION: OFF';
+                rotBtn.style.background = '#555';
+                updateMode();
+            });
+
+            rotBtn.addEventListener('click', () => {
+                editRotation = !editRotation;
+                if (editRotation) editPosition = false;
+                rotBtn.textContent = editRotation ? '🔄 ROTATION: ON' : '🔄 ROTATION: OFF';
+                rotBtn.style.background = editRotation ? '#f59e0b' : '#555';
+                posBtn.textContent = '📦 POSITION: OFF';
+                posBtn.style.background = '#555';
+                updateMode();
+            });
+
+            function updateMode() {
+                const isEditing = editPosition || editRotation;
+                const mc = document.getElementById('model-container');
+                if (mc) mc.style.pointerEvents = isEditing ? 'auto' : 'none';
+                renderer.domElement.style.zIndex = isEditing ? '1' : '-1';
+                autoRotate = !isEditing;
+
+                if (editPosition) {
+                    debugBox.innerHTML = `
+                📦 POSITION MODE<br>
+                Left drag: move X/Y &nbsp;|&nbsp; Right drag: move Z<br><br>
+                position.set(${loadedModel?.position.x.toFixed(2)}, ${loadedModel?.position.y.toFixed(2)}, ${loadedModel?.position.z.toFixed(2)});<br>
+                rotation.set(${loadedModel?.rotation.x.toFixed(2)}, ${loadedModel?.rotation.y.toFixed(2)}, ${loadedModel?.rotation.z.toFixed(2)});<br>
+                scale.set(${loadedModel?.scale.x.toFixed(2)}, ${loadedModel?.scale.y.toFixed(2)}, ${loadedModel?.scale.z.toFixed(2)});
+            `;
+                } else if (editRotation) {
+                    debugBox.innerHTML = `
+                🔄 ROTATION MODE<br>
+                Left drag: rotate X/Y &nbsp;|&nbsp; Right drag: rotate Z<br><br>
+                position.set(${loadedModel?.position.x.toFixed(2)}, ${loadedModel?.position.y.toFixed(2)}, ${loadedModel?.position.z.toFixed(2)});<br>
+                rotation.set(${loadedModel?.rotation.x.toFixed(2)}, ${loadedModel?.rotation.y.toFixed(2)}, ${loadedModel?.rotation.z.toFixed(2)});<br>
+                scale.set(${loadedModel?.scale.x.toFixed(2)}, ${loadedModel?.scale.y.toFixed(2)}, ${loadedModel?.scale.z.toFixed(2)});
+            `;
+                } else {
+                    debugBox.innerHTML = `AUTO ROTATE ON<br>Toggle a mode to edit.`;
+                }
+            }
+
+            function updateDebug() {
+                if (!loadedModel) return;
+                updateMode();
+            }
+
+            renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            renderer.domElement.addEventListener('mousedown', (e) => {
+                if (!editPosition && !editRotation) return;
+                if (e.button === 0) isLeftDrag = true;
+                if (e.button === 2) isRightDrag = true;
+                prevMouse = { x: e.clientX, y: e.clientY };
+            });
+
+            renderer.domElement.addEventListener('mousemove', (e) => {
+                if (!loadedModel) return;
+                const dx = (e.clientX - prevMouse.x) * 0.01;
+                const dy = (e.clientY - prevMouse.y) * 0.01;
+
+                if (isLeftDrag && editPosition) {
+                    loadedModel.position.x += dx;
+                    loadedModel.position.y -= dy;
+                }
+
+                if (isRightDrag && editPosition) {
+                    loadedModel.position.z += dy;
+                }
+
+                if (isLeftDrag && editRotation) {
+                    loadedModel.rotation.x += dx;
+                    loadedModel.rotation.y += dy;
+                }
+
+                if (isRightDrag && editRotation) {
+                    loadedModel.rotation.z += dx;
+                }
+
+                if (isLeftDrag || isRightDrag) {
+                    prevMouse = { x: e.clientX, y: e.clientY };
+                    updateDebug();
+                }
+            });
+
+            renderer.domElement.addEventListener('mouseup', () => {
+                isLeftDrag = false;
+                isRightDrag = false;
+            });
+
+            
+
+            setInterval(() => { if (editPosition || editRotation) updateDebug(); }, 100);
+
+            // init debug box
+            updateMode();
+        }
+// --- END DEBUG ---
 
         function animateModel() {
             requestAnimationFrame(animateModel);
