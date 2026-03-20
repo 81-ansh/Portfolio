@@ -249,7 +249,6 @@ function setupActiveNav() {
 
 }
 
-
 // EXECUTION
 if (window.location.pathname.includes('project.html')) {
     // Populate detail page from query string and build Steam-like media viewer
@@ -614,21 +613,13 @@ if (!window.location.pathname.includes('project.html')) {
         renderer.setSize(window.innerWidth, window.innerHeight);
         modelContainer.appendChild(renderer.domElement);
 
-        // Load GLTF
         let loadedModel = null;
 
         const loader = new THREE.GLTFLoader();
         loader.load('models/Dragon.glb', function(gltf) {
             loadedModel = gltf.scene;
             scene.add(loadedModel);
-            loadedModel.scale.set(40.25, 40.25, 40.25);
-            loadedModel.position.set(30, 180, 0);
-            loadedModel.rotation.set(-0.81, 3.07, -2.19);
 
-            camera.position.z = 12;
-            camera.lookAt(loadedModel.position);
-
-            // Wireframe
             loadedModel.traverse(function(child) {
                 if (child.isMesh) {
                     child.material = new THREE.MeshBasicMaterial({
@@ -639,9 +630,7 @@ if (!window.location.pathname.includes('project.html')) {
                     });
                 }
             });
-        }, function(progress) {
-            console.log('Loading progress:', progress);
-        }, function(error) {
+        }, null, function(error) {
             console.error('Error loading model:', error);
         });
 
@@ -655,54 +644,143 @@ if (!window.location.pathname.includes('project.html')) {
         pointLight.position.set(-1, -1, 1);
         scene.add(pointLight);
 
-        // --- DEBUG DRAG TO POSITION ---
+        camera.position.z = 12;
+
+        // --- SECTION KEYFRAMES ---
+        const keyframes = [
+            { // home
+                position: { x: 0.92, y: -0.65, z: -1.01 },
+                rotation: { x: 0.45, y: 5.54, z: -0.26 },
+                scale: 3.25
+            },
+            { // skills
+                position: { x: 0, y: -1.87, z: 0 },
+                rotation: { x: 1.27, y: 3.15, z: 0 },
+                scale: 3.25
+            },
+            { // projects
+                position: { x: 40.95, y: 0.40, z: -0.70 },
+                rotation: { x: 4.89, y: 4.67, z: 0.5 },
+                scale: 53.89
+            },
+            { // about
+                position: { x: 81.12, y: -21.29, z: -24.23 },
+                rotation: { x: 2.15, y: -1.26, z: 1.94 },
+                scale: 37.25
+            },
+            { // certificates
+                position: { x: 19.34, y: -12.33, z: -1.79 },
+                rotation: { x: 0.04, y: 5.99, z: 0.15 },
+                scale: 8.53
+            },
+            { // contact
+                position: { x: 17.74, y: -12.10, z: -1.21 },
+                rotation: { x: 0.14, y: 6.01, z: 0.14 },
+                scale: 7.78
+            }
+        ];
+
+        const current = {
+            px: keyframes[0].position.x,
+            py: keyframes[0].position.y,
+            pz: keyframes[0].position.z,
+            rx: keyframes[0].rotation.x,
+            ry: keyframes[0].rotation.y,
+            rz: keyframes[0].rotation.z,
+            sc: keyframes[0].scale
+        };
+
+        function lerp(a, b, t) {
+            return a + (b - a) * t;
+        }
+
+        function lerpAngle(a, b, t) {
+            let diff = b - a;
+            while (diff > Math.PI) diff -= Math.PI * 2;
+            while (diff < -Math.PI) diff += Math.PI * 2;
+            return a + diff * t;
+        }
+
+        function getScrollProgress() {
+            const sectionIds = ['home', 'skills', 'projects', 'about', 'certificates', 'contact'];
+            const scrollY = window.scrollY;
+
+            let fromIndex = 0;
+            let toIndex = 1;
+            let t = 0;
+
+            for (let i = 0; i < sectionIds.length - 1; i++) {
+                const fromEl = document.getElementById(sectionIds[i]);
+                const toEl = document.getElementById(sectionIds[i + 1]);
+                if (!fromEl || !toEl) continue;
+
+                const fromTop = fromEl.offsetTop;
+                const toTop = toEl.offsetTop;
+
+                if (scrollY >= fromTop && scrollY < toTop) {
+                    fromIndex = i;
+                    toIndex = i + 1;
+                    t = (scrollY - fromTop) / (toTop - fromTop);
+                    break;
+                }
+
+                if (i === sectionIds.length - 2 && scrollY >= toTop) {
+                    fromIndex = i + 1;
+                    toIndex = i + 1;
+                    t = 0;
+                }
+            }
+
+            return { fromIndex, toIndex, t };
+        }
+
+        // --- DEBUG ---
         const DEBUG = false;
         let isLeftDrag = false;
         let isRightDrag = false;
         let prevMouse = { x: 0, y: 0 };
-        let autoRotate = false; // starts with auto rotation on
+        let debugOverride = false;
 
         if (DEBUG) {
             const debugBox = document.createElement('div');
             debugBox.style.cssText = `
-        position: fixed; top: 80px; left: 10px; z-index: 9999;
-        background: rgba(0,0,0,0.7); color: #a855f7;
-        font-family: monospace; font-size: 13px;
-        padding: 10px; border: 1px solid #a855f7; border-radius: 6px;
-        line-height: 1.8; min-width: 320px;
-    `;
+                position: fixed; top: 80px; left: 10px; z-index: 9999;
+                background: rgba(0,0,0,0.7); color: #a855f7;
+                font-family: monospace; font-size: 13px;
+                padding: 10px; border: 1px solid #a855f7; border-radius: 6px;
+                line-height: 1.8; min-width: 320px;
+            `;
             document.body.appendChild(debugBox);
 
             let editPosition = false;
             let editRotation = false;
 
-            // Position toggle
             const posBtn = document.createElement('button');
             posBtn.style.cssText = `
-        position: fixed; top: 220px; left: 10px; z-index: 10000;
-        background: #555; color: #fff;
-        font-family: monospace; font-size: 13px; font-weight: bold;
-        padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
-        display: block; width: 180px; margin-bottom: 8px;
-    `;
+                position: fixed; top: 260px; left: 10px; z-index: 10000;
+                background: #555; color: #fff;
+                font-family: monospace; font-size: 13px; font-weight: bold;
+                padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
+                display: block; width: 180px;
+            `;
             posBtn.textContent = '📦 POSITION: OFF';
             document.body.appendChild(posBtn);
 
-            // Rotation toggle
             const rotBtn = document.createElement('button');
             rotBtn.style.cssText = `
-        position: fixed; top: 260px; left: 10px; z-index: 10000;
-        background: #555; color: #fff;
-        font-family: monospace; font-size: 13px; font-weight: bold;
-        padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
-        display: block; width: 180px;
-    `;
+                position: fixed; top: 300px; left: 10px; z-index: 10000;
+                background: #555; color: #fff;
+                font-family: monospace; font-size: 13px; font-weight: bold;
+                padding: 8px 14px; border: none; border-radius: 6px; cursor: pointer;
+                display: block; width: 180px;
+            `;
             rotBtn.textContent = '🔄 ROTATION: OFF';
             document.body.appendChild(rotBtn);
 
             posBtn.addEventListener('click', () => {
                 editPosition = !editPosition;
-                if (editPosition) editRotation = false; // only one active at a time
+                if (editPosition) { editRotation = false; debugOverride = true; }
+                else if (!editRotation) debugOverride = false;
                 posBtn.textContent = editPosition ? '📦 POSITION: ON' : '📦 POSITION: OFF';
                 posBtn.style.background = editPosition ? '#22c55e' : '#555';
                 rotBtn.textContent = '🔄 ROTATION: OFF';
@@ -712,7 +790,8 @@ if (!window.location.pathname.includes('project.html')) {
 
             rotBtn.addEventListener('click', () => {
                 editRotation = !editRotation;
-                if (editRotation) editPosition = false;
+                if (editRotation) { editPosition = false; debugOverride = true; }
+                else if (!editPosition) debugOverride = false;
                 rotBtn.textContent = editRotation ? '🔄 ROTATION: ON' : '🔄 ROTATION: OFF';
                 rotBtn.style.background = editRotation ? '#f59e0b' : '#555';
                 posBtn.textContent = '📦 POSITION: OFF';
@@ -725,26 +804,25 @@ if (!window.location.pathname.includes('project.html')) {
                 const mc = document.getElementById('model-container');
                 if (mc) mc.style.pointerEvents = isEditing ? 'auto' : 'none';
                 renderer.domElement.style.zIndex = isEditing ? '1' : '-1';
-                autoRotate = !isEditing;
 
                 if (editPosition) {
                     debugBox.innerHTML = `
-                📦 POSITION MODE<br>
-                Left drag: move X/Y &nbsp;|&nbsp; Right drag: move Z<br><br>
-                position.set(${loadedModel?.position.x.toFixed(2)}, ${loadedModel?.position.y.toFixed(2)}, ${loadedModel?.position.z.toFixed(2)});<br>
-                rotation.set(${loadedModel?.rotation.x.toFixed(2)}, ${loadedModel?.rotation.y.toFixed(2)}, ${loadedModel?.rotation.z.toFixed(2)});<br>
-                scale.set(${loadedModel?.scale.x.toFixed(2)}, ${loadedModel?.scale.y.toFixed(2)}, ${loadedModel?.scale.z.toFixed(2)});
-            `;
+                        📦 POSITION MODE<br>
+                        Left drag: X/Y &nbsp;|&nbsp; Right drag: Z &nbsp;|&nbsp; Scroll: scale<br><br>
+                        position: { x: ${loadedModel?.position.x.toFixed(2)}, y: ${loadedModel?.position.y.toFixed(2)}, z: ${loadedModel?.position.z.toFixed(2)} },<br>
+                        rotation: { x: ${loadedModel?.rotation.x.toFixed(2)}, y: ${loadedModel?.rotation.y.toFixed(2)}, z: ${loadedModel?.rotation.z.toFixed(2)} },<br>
+                        scale: ${loadedModel?.scale.x.toFixed(2)}
+                    `;
                 } else if (editRotation) {
                     debugBox.innerHTML = `
-                🔄 ROTATION MODE<br>
-                Left drag: rotate X/Y &nbsp;|&nbsp; Right drag: rotate Z<br><br>
-                position.set(${loadedModel?.position.x.toFixed(2)}, ${loadedModel?.position.y.toFixed(2)}, ${loadedModel?.position.z.toFixed(2)});<br>
-                rotation.set(${loadedModel?.rotation.x.toFixed(2)}, ${loadedModel?.rotation.y.toFixed(2)}, ${loadedModel?.rotation.z.toFixed(2)});<br>
-                scale.set(${loadedModel?.scale.x.toFixed(2)}, ${loadedModel?.scale.y.toFixed(2)}, ${loadedModel?.scale.z.toFixed(2)});
-            `;
+                        🔄 ROTATION MODE<br>
+                        Left drag: X/Y &nbsp;|&nbsp; Right drag: Z &nbsp;|&nbsp; Scroll: scale<br><br>
+                        position: { x: ${loadedModel?.position.x.toFixed(2)}, y: ${loadedModel?.position.y.toFixed(2)}, z: ${loadedModel?.position.z.toFixed(2)} },<br>
+                        rotation: { x: ${loadedModel?.rotation.x.toFixed(2)}, y: ${loadedModel?.rotation.y.toFixed(2)}, z: ${loadedModel?.rotation.z.toFixed(2)} },<br>
+                        scale: ${loadedModel?.scale.x.toFixed(2)}
+                    `;
                 } else {
-                    debugBox.innerHTML = `AUTO ROTATE ON<br>Toggle a mode to edit.`;
+                    debugBox.innerHTML = `SCROLL MODE — scroll to animate<br>Enable position/rotation to override.`;
                 }
             }
 
@@ -770,19 +848,22 @@ if (!window.location.pathname.includes('project.html')) {
                 if (isLeftDrag && editPosition) {
                     loadedModel.position.x += dx;
                     loadedModel.position.y -= dy;
+                    current.px = loadedModel.position.x;
+                    current.py = loadedModel.position.y;
                 }
-
                 if (isRightDrag && editPosition) {
                     loadedModel.position.z += dy;
+                    current.pz = loadedModel.position.z;
                 }
-
                 if (isLeftDrag && editRotation) {
                     loadedModel.rotation.x += dx;
                     loadedModel.rotation.y += dy;
+                    current.rx = loadedModel.rotation.x;
+                    current.ry = loadedModel.rotation.y;
                 }
-
                 if (isRightDrag && editRotation) {
                     loadedModel.rotation.z += dx;
+                    current.rz = loadedModel.rotation.z;
                 }
 
                 if (isLeftDrag || isRightDrag) {
@@ -796,17 +877,51 @@ if (!window.location.pathname.includes('project.html')) {
                 isRightDrag = false;
             });
 
-            
+            renderer.domElement.addEventListener('wheel', (e) => {
+                if (!loadedModel || (!editPosition && !editRotation)) return;
+                e.preventDefault();
+                const delta = e.deltaY > 0 ? -0.05 : 0.05;
+                const newScale = Math.max(0.1, loadedModel.scale.x + delta);
+                loadedModel.scale.set(newScale, newScale, newScale);
+                current.sc = newScale;
+                updateDebug();
+            }, { passive: false });
 
             setInterval(() => { if (editPosition || editRotation) updateDebug(); }, 100);
-
-            // init debug box
             updateMode();
         }
-// --- END DEBUG ---
+        // --- END DEBUG ---
 
         function animateModel() {
             requestAnimationFrame(animateModel);
+
+            if (loadedModel && !debugOverride) {
+                const { fromIndex, toIndex, t } = getScrollProgress();
+                const from = keyframes[fromIndex];
+                const to = keyframes[toIndex];
+
+                const targetPx = lerp(from.position.x, to.position.x, t);
+                const targetPy = lerp(from.position.y, to.position.y, t);
+                const targetPz = lerp(from.position.z, to.position.z, t);
+                const targetRx = lerpAngle(from.rotation.x, to.rotation.x, t);
+                const targetRy = lerpAngle(from.rotation.y, to.rotation.y, t);
+                const targetRz = lerpAngle(from.rotation.z, to.rotation.z, t);
+                const targetSc = lerp(from.scale, to.scale, t);
+
+                const s = 0.05;
+                current.px = lerp(current.px, targetPx, s);
+                current.py = lerp(current.py, targetPy, s);
+                current.pz = lerp(current.pz, targetPz, s);
+                current.rx = lerpAngle(current.rx, targetRx, s);
+                current.ry = lerpAngle(current.ry, targetRy, s);
+                current.rz = lerpAngle(current.rz, targetRz, s);
+                current.sc = lerp(current.sc, targetSc, s);
+
+                loadedModel.position.set(current.px, current.py, current.pz);
+                loadedModel.rotation.set(current.rx, current.ry, current.rz);
+                loadedModel.scale.set(current.sc, current.sc, current.sc);
+            }
+
             renderer.render(scene, camera);
         }
 
