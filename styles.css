@@ -1239,6 +1239,11 @@ body.project-page {
     .project-popup-content {
         flex-direction: column;
     }
+
+    .about-text {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
 }
 
 @media (max-width: 550px) {
@@ -1304,6 +1309,11 @@ body.project-page {
 
     .project-tech {
         font-size: 0.7rem;
+    }
+
+    .about-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
     }
 
     .certificate-grid {
