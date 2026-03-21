@@ -645,39 +645,80 @@ if (!window.location.pathname.includes('project.html')) {
         scene.add(pointLight);
 
         camera.position.z = 12;
-
+        
         // --- SECTION KEYFRAMES ---
         const keyframes = [
+
             { // home
-                position: { x: 0.92, y: -0.65, z: -1.01 },
+                position: { x: 6.40, y: -0.30, z: -1.01 },
+                rotation: { x: 16.28, y: 10.61, z: 2.87 },
+                scale: 3.25
+            },
+            // { // home
+            //     position: { x: 8.90, y: -0.51, z: -1.01 },
+            //     rotation: { x: 16.28, y: 10.61, z: 2.87 },
+            //     scale: 3.25
+            // },
+            // { // Main home
+            //     position: { x: 0.92, y: -0.65, z: -1.01 },
+            //     rotation: { x: 0.45, y: 5.54, z: -0.26 },
+            //     scale: 3.25
+            // },
+
+            { // Out of screen
+                position: { x: 0.92, y: 50, z: -1.01 },
+                rotation: { x: 1, y: 5.54, z: -0.26 },
+                scale: 3.25
+            },
+            { // Out of screen
+                position: { x: 0.92, y: 50, z: -1.01 },
                 rotation: { x: 0.45, y: 5.54, z: -0.26 },
                 scale: 3.25
-            },
-            { // skills
-                position: { x: 0, y: -1.87, z: 0 },
-                rotation: { x: 1.27, y: 3.15, z: 0 },
-                scale: 3.25
-            },
-            { // projects
-                position: { x: 40.95, y: 0.40, z: -0.70 },
-                rotation: { x: 4.89, y: 4.67, z: 0.5 },
-                scale: 53.89
             },
             { // about
                 position: { x: 81.12, y: -21.29, z: -24.23 },
                 rotation: { x: 2.15, y: -1.26, z: 1.94 },
                 scale: 37.25
             },
-            { // certificates
-                position: { x: 19.34, y: -12.33, z: -1.79 },
+            { // Out of screen
+                position: { x: 500, y: -12.33, z: -1.79 },
                 rotation: { x: 0.04, y: 5.99, z: 0.15 },
                 scale: 8.53
-            },
-            { // contact
-                position: { x: 17.74, y: -12.10, z: -1.21 },
-                rotation: { x: 0.14, y: 6.01, z: 0.14 },
-                scale: 7.78
             }
+            
+            
+            
+            // { // home
+            //     position: { x: 0.92, y: -0.65, z: -1.01 },
+            //     rotation: { x: 0.45, y: 5.54, z: -0.26 },
+            //     scale: 3.25
+            // },
+            //
+            // { // skills
+            //     position: { x: 0, y: -1.87, z: 0 },
+            //     rotation: { x: 1.27, y: 3.15, z: 0 },
+            //     scale: 3.25
+            // },
+            // { // projects
+            //     position: { x: 40.95, y: 0.40, z: -0.70 },
+            //     rotation: { x: 4.89, y: 4.67, z: 0.5 },
+            //     scale: 53.89
+            // },
+            // { // about
+            //     position: { x: 81.12, y: -21.29, z: -24.23 },
+            //     rotation: { x: 2.15, y: -1.26, z: 1.94 },
+            //     scale: 37.25
+            // },
+            // { // certificates
+            //     position: { x: 19.34, y: -12.33, z: -1.79 },
+            //     rotation: { x: 0.04, y: 5.99, z: 0.15 },
+            //     scale: 8.53
+            // },
+            // { // contact
+            //     position: { x: 17.74, y: -12.10, z: -1.21 },
+            //     rotation: { x: 0.14, y: 6.01, z: 0.14 },
+            //     scale: 7.78
+            // }
         ];
 
         const current = {
