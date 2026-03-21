@@ -1118,6 +1118,68 @@ body.project-page {
     }
 }
 
+@media (max-width: 550px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .skill-tile {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .skill-tile img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .skill-tile p {
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+    }
+
+    .projects-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .project-tile {
+        padding: 0.75rem;
+        border-radius: 14px;
+    }
+
+    .project-tile h3 {
+        font-size: 0.75rem;
+    }
+
+    .project-tech {
+        font-size: 0.7rem;
+    }
+
+    .certificate-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .certificate-tile {
+        padding: 1rem;
+        border-radius: 14px;
+    }
+
+    .certificate-tile h3 {
+        font-size: 1rem;
+    }
+
+    .certificate-tile p {
+        font-size: 0.85rem;
+    }
+
+    .certificate-tile a {
+        font-size: 0.8rem;
+    }
+}
+
 #networkCanvas {
     position: fixed;
     top: 0;
