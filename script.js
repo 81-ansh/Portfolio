@@ -422,6 +422,35 @@ if (window.location.pathname.includes('project.html')) {
 
         let currentIndex = 0;
 
+        function openImagePopup(src) {
+            const popup = document.createElement('div');
+            popup.style.cssText = `
+        position: fixed; inset: 0; z-index: 99999;
+        background: rgba(0,0,0,0.9);
+        display: flex; align-items: center; justify-content: center;
+        cursor: zoom-out;
+        animation: fadeIn 0.2s ease;
+    `;
+
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.cssText = `
+        max-width: 90vw; max-height: 90vh;
+        border-radius: 8px;
+        object-fit: contain;
+        box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+    `;
+
+            popup.appendChild(img);
+            document.body.appendChild(popup);
+            document.body.style.overflow = 'hidden';
+
+            popup.addEventListener('click', () => {
+                popup.remove();
+                document.body.style.overflow = '';
+            });
+        }
+        
         function renderMain() {
             mediaMain.innerHTML = "";
             const item = mediaItems[currentIndex];
@@ -443,6 +472,8 @@ if (window.location.pathname.includes('project.html')) {
                 img.src = item.src;
                 img.alt = "Project media";
                 img.className = "media-main-image";
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', () => openImagePopup(img.src));
                 mediaMain.appendChild(img);
             }
         }
