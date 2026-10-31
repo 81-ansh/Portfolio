@@ -392,7 +392,7 @@ if (window.location.pathname.includes('project.html')) {
 
         // Add dummy media if none provided
         if (mediaItems.length === 0) {
-            mediaItems.push({ type: "image", src: "images/Projects/Placeholder.png" });
+            mediaItems.push({ type: "image", src: "Projects/Aura/Aura_Logo.webp" });
         }
 
         function getYouTubeId(url) {

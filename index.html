@@ -3,46 +3,76 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ansh's Portfolio</title>
-    <meta name="description" content="Portfolio website for Ansh Sharma - Game Developer" />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-    <link rel="manifest" href="/favicon/site.webmanifest" />
-    
+    <title>Ansh Sharma | Game Developer – Unreal Engine &amp; C++ Portfolio</title>
+    <meta name="description" content="Portfolio of Ansh Sharma, a game developer skilled in Unreal Engine 5, C++ and Gameplay Ability System. Browse projects, certificates and download my resume." />
+    <meta name="author" content="Ansh Sharma" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0a0a12" />
+    <link rel="canonical" href="https://81-ansh.github.io/Portfolio/" />
+
+    <!-- Social sharing (WhatsApp, LinkedIn, Discord, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ansh Sharma | Game Developer" />
+    <meta property="og:description" content="Unreal Engine 5 and C++ game developer. See my projects, certificates and resume." />
+    <meta property="og:url" content="https://81-ansh.github.io/Portfolio/" />
+    <meta property="og:image" content="https://81-ansh.github.io/Portfolio/Projects/Aura/Aura_Logo.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Ansh Sharma | Game Developer" />
+    <meta name="twitter:description" content="Unreal Engine 5 and C++ game developer. See my projects, certificates and resume." />
+    <meta name="twitter:image" content="https://81-ansh.github.io/Portfolio/Projects/Aura/Aura_Logo.webp" />
+
+    <!-- Favicon (relative paths so they work under /Portfolio/) -->
+    <link rel="icon" type="image/png" href="favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+    <link rel="manifest" href="favicon/site.webmanifest" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet" />
-    
+    <link rel="preload" href="Ethnocentric-Regular.otf" as="font" type="font/otf" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet" />
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="stylesheet" href="styles.css" />
-    
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <!-- Search engines: structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ansh Sharma",
+      "jobTitle": "Game Developer",
+      "url": "https://81-ansh.github.io/Portfolio/",
+      "email": "mailto:81anshsharma@gmail.com",
+      "knowsAbout": ["Unreal Engine 5", "C++", "Gameplay Ability System", "Multiplayer game development"],
+      "sameAs": ["https://github.com/81-ansh", "https://www.linkedin.com/in/ansh-sharma-a19296276/"]
+    }
+    </script>
+
+    <!-- Scripts (defer = don't block the page from showing) -->
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
 </head>
 <body>
-<div id="model-container"></div>
+<div id="model-container" aria-hidden="true"></div>
 
-  <canvas id="networkCanvas"></canvas>
+  <canvas id="networkCanvas" aria-hidden="true"></canvas>
   <header class="site-header" id="top">
       <div class="container nav-wrap">
           <a class="brand" href="#home">as</a>
           <nav class="site-nav" aria-label="Primary navigation">
               <a href="#home" class="active">HOME</a>
               <a href="#skills">SKILLS</a>
+              <a href="#experience">EXPERIENCE</a>
               <a href="#projects">PROJECTS</a>
               <a href="#about">ABOUT</a>
               <a href="#certificates">CERTIFICATES</a>
               <a href="#contact">CONTACT</a>
           </nav>
           <!-- ADD MENU BUTTON HERE -->
-          <button class="menu-btn">
+          <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false">
               <i class="fa-solid fa-bars"></i>
           </button>
       </div>
@@ -55,10 +85,10 @@
               <div class="hero-text">
                   <h1 class="glitch-text">GAME<br><span>DEVELOPER</span></h1>
                   <h2 class="hero-name">Ansh Sharma</h2>
-                  <p class="hero-tagline">CRAFTING IMMERSIVE DIGITAL EXPERIENCES</p>
+                  <p class="hero-tagline"></p>
                   <div class="hero-actions">
                       <a class="btn btn-primary" href="#projects">VIEW PROJECTS</a>
-                      <a class="btn btn-outline" href="Ansh Resume.pdf" download>DOWNLOAD RESUME</a>
+                      <a class="btn btn-outline" href="Ansh%20Resume.pdf" download>DOWNLOAD RESUME</a>
                   </div>
               </div>
               
@@ -95,6 +125,38 @@
               </div>
           </div>
       </section>
+      
+      
+      <section class="section reveal" id="experience">
+          <div class="container">
+              <h2 class="section-title">EXPERIENCE</h2>
+
+              <div class="experience-card">
+                  <div class="experience-header">
+                      <div>
+                          <h3 class="experience-role">Unreal Engine Intern</h3>
+                          <p class="experience-company">GameGenesis</p>
+                      </div>
+                      <span class="experience-badge"><span class="pulse-dot"></span>CURRENTLY WORKING</span>
+                  </div>
+
+                  <div class="experience-meta">
+                      <span><i class="fa-solid fa-calendar"></i>Sept 2026 – Present</span>
+                      <span><i class="fa-solid fa-location-dot"></i>Remote</span>
+                  </div>
+
+                  <ul class="experience-points">
+                      <li>What you built or worked on</li>
+                      <li>A tool, system or feature you handled</li>
+                  </ul>
+
+                  <div class="experience-tags">
+                      <span>Unreal Engine</span>
+                      <span>C++</span>
+                  </div>
+              </div>
+          </div>
+      </section>
 
 
       <section class="section reveal" id="projects">
@@ -106,12 +168,12 @@
                  <!-- Aura -->
                  <div class="project-tile"
                       data-video="https://youtu.be/2MXesE6Dwhs"
-                      data-shot1="Projects/Aura/Aura_1.png"
-                      data-shot2="Projects/Aura/Aura_2.png"
-                      data-shot3="Projects/Aura/Aura_3.png"
-                      data-shot4="Projects/Aura/Aura_4.png"
-                      data-shot5="Projects/Aura/Aura_5.png"
-                      data-shot6="Projects/Aura/Aura_6.png"
+                      data-shot1="Projects/Aura/Aura_1.webp"
+                      data-shot2="Projects/Aura/Aura_2.webp"
+                      data-shot3="Projects/Aura/Aura_3.webp"
+                      data-shot4="Projects/Aura/Aura_4.webp"
+                      data-shot5="Projects/Aura/Aura_5.webp"
+                      data-shot6="Projects/Aura/Aura_6.webp"
                       data-title="AURA (Udemy)"
                       data-gametype="Top-Down Action RPG"
                       data-tech="Unreal Engine / C++ / Gameplay Ability System (GAS)"
@@ -121,7 +183,7 @@
                                 The game also features enemy AI controlled using Behavior Trees with different behaviors. Enemies can drop pickups such as health and mana potions, adding resource management to the combat experience."
                       data-github="https://github.com/81-ansh/GAS_RPG"
                       data-itchio="https://81-ansh.itch.io/aura">
-                     <img src="Projects/Aura/Aura_Logo.png" alt="AURA project Logo">
+                     <img src="Projects/Aura/Aura_Logo.webp" alt="AURA project logo">
                      <h3>AURA (Udemy)</h3>
                      <p class="project-tech">
                          Unreal Engine / C++ / GAS
@@ -131,16 +193,16 @@
                  <!-- Multiplayer Shooter -->
                  <div class="project-tile"
                       data-video="https://youtu.be/6KIs7KhfNVA"
-                      data-shot1="Projects/MultiplayerShooter/MultiplayerShooter_1.png"
-                      data-shot2="Projects/MultiplayerShooter/MultiplayerShooter_2.png"
-                      data-shot3="Projects/MultiplayerShooter/MultiplayerShooter_3.png"
-                      data-shot4="Projects/MultiplayerShooter/MultiplayerShooter_4.png"
-                      data-shot5="Projects/MultiplayerShooter/MultiplayerShooter_5.png"
-                      data-shot6="Projects/MultiplayerShooter/MultiplayerShooter_6.png"
-                      data-shot7="Projects/MultiplayerShooter/MultiplayerShooter_7.png"
-                      data-shot8="Projects/MultiplayerShooter/MultiplayerShooter_8.png"
-                      data-shot9="Projects/MultiplayerShooter/MultiplayerShooter_9.png"
-                      data-shot10="Projects/MultiplayerShooter/MultiplayerShooter_10.png"
+                      data-shot1="Projects/MultiplayerShooter/MultiplayerShooter_1.webp"
+                      data-shot2="Projects/MultiplayerShooter/MultiplayerShooter_2.webp"
+                      data-shot3="Projects/MultiplayerShooter/MultiplayerShooter_3.webp"
+                      data-shot4="Projects/MultiplayerShooter/MultiplayerShooter_4.webp"
+                      data-shot5="Projects/MultiplayerShooter/MultiplayerShooter_5.webp"
+                      data-shot6="Projects/MultiplayerShooter/MultiplayerShooter_6.webp"
+                      data-shot7="Projects/MultiplayerShooter/MultiplayerShooter_7.webp"
+                      data-shot8="Projects/MultiplayerShooter/MultiplayerShooter_8.webp"
+                      data-shot9="Projects/MultiplayerShooter/MultiplayerShooter_9.webp"
+                      data-shot10="Projects/MultiplayerShooter/MultiplayerShooter_10.webp"
                       data-title="Multiplayer Shooter"
                       data-gametype="Shooter"
                       data-tech="Unreal Engine / C++ / Steam Subsystem"
@@ -148,7 +210,7 @@
                       data-desc="A multiplayer third-person shooter built in Unreal Engine, featuring networked gameplay powered by Steam's Online Subsystem for matchmaking and session management."
                       data-github="https://github.com/81-ansh/Blaster"
                       data-itchio="https://81-ansh.itch.io/multiplayer-shooter">
-                     <img src="Projects/MultiplayerShooter/MultiplayerShooter_Logo.png" alt="AURA project Logo">
+                     <img src="Projects/MultiplayerShooter/MultiplayerShooter_Logo.webp" alt="Multiplayer Shooter project logo">
                      <h3>Multiplayer Shooter</h3>
                      <p class="project-tech">
                          Unreal Engine / C++ / Steam Subsystem
@@ -158,12 +220,12 @@
                  <!-- CoinQuest -->
                  <div class="project-tile"
                       data-video="https://youtu.be/9q_O77ZZS58"
-                      data-shot1="Projects/CoinQuest/CoinQuest_1.png"
-                      data-shot2="Projects/CoinQuest/CoinQuest_2.png"
-                      data-shot3="Projects/CoinQuest/CoinQuest_3.png"
-                      data-shot4="Projects/CoinQuest/CoinQuest_4.png"
-                      data-shot5="Projects/CoinQuest/CoinQuest_5.png"
-                      data-shot6="Projects/CoinQuest/CoinQuest_6.png"
+                      data-shot1="Projects/CoinQuest/CoinQuest_1.webp"
+                      data-shot2="Projects/CoinQuest/CoinQuest_2.webp"
+                      data-shot3="Projects/CoinQuest/CoinQuest_3.webp"
+                      data-shot4="Projects/CoinQuest/CoinQuest_4.webp"
+                      data-shot5="Projects/CoinQuest/CoinQuest_5.webp"
+                      data-shot6="Projects/CoinQuest/CoinQuest_6.webp"
                       data-title="CoinQuest"
                       data-gametype="3D Arcade Evasion"
                       data-tech="Unreal Engine / Blueprints / Behavior Tree"
@@ -173,7 +235,7 @@
                                 A UI system displays the objective and tracks how many coins remain to complete the level."
                       data-github="https://github.com/81-ansh/CoinQuest"
                       data-itchio="https://81-ansh.itch.io/coinquest">
-                     <img src="Projects/CoinQuest/CoinQuest_Logo.png" alt="CoinQuest project Logo">
+                     <img src="Projects/CoinQuest/CoinQuest_Logo.webp" alt="CoinQuest project Logo">
                      <h3>CoinQuest</h3>
                      <p class="project-tech">
                          Unreal Engine / Blueprints
@@ -183,10 +245,10 @@
                  <!-- Pong -->
                  <div class="project-tile"
                       data-video="https://youtu.be/S22afv7ydLw"
-                      data-shot1="Projects/Pong/Pong_1.png"
-                      data-shot2="Projects/Pong/Pong_2.png"
-                      data-shot3="Projects/Pong/Pong_3.png"
-                      data-shot4="Projects/Pong/Pong_4.png"
+                      data-shot1="Projects/Pong/Pong_1.webp"
+                      data-shot2="Projects/Pong/Pong_2.webp"
+                      data-shot3="Projects/Pong/Pong_3.webp"
+                      data-shot4="Projects/Pong/Pong_4.webp"
                       data-title="Pong"
                       data-gametype="Arcade Game"
                       data-tech="Unreal Engine / Blueprints"
@@ -194,7 +256,7 @@
                       data-desc="A classic Pong game implemented in Unreal Engine with Blueprints."
                       data-github="https://github.com/81-ansh/Pong"
                       data-itchio="https://81-ansh.itch.io/pong">
-                     <img src="Projects/Pong/Pong_Logo.png" alt="Pong project Logo">
+                     <img src="Projects/Pong/Pong_Logo.webp" alt="Pong project Logo">
                      <h3>Pong</h3>
                      <p class="project-tech">
                          Unreal Engine / Blueprints
@@ -204,9 +266,9 @@
                  <!-- Flappy Bird -->
                  <div class="project-tile"
                       data-video="https://youtu.be/6YP6v9QqzN0"
-                      data-shot1="Projects/FlappyBird/FlappyBird_1.png"
-                      data-shot2="Projects/FlappyBird/FlappyBird_2.png"
-                      data-shot3="Projects/FlappyBird/FlappyBird_3.png"
+                      data-shot1="Projects/FlappyBird/FlappyBird_1.webp"
+                      data-shot2="Projects/FlappyBird/FlappyBird_2.webp"
+                      data-shot3="Projects/FlappyBird/FlappyBird_3.webp"
                       data-title="Flappy Bird"
                       data-gametype="Arcade Game"
                       data-tech="Unreal Engine / C++ / Blueprints"
@@ -214,7 +276,7 @@
                       data-desc="A recreation of the classic Flappy Bird, built in Unreal Engine 5 using C++. The player controls a bird navigating through an endless series of pipes, with physics-driven movement and a persistent high score system."
                       data-github="https://github.com/81-ansh/FlappyBird"
                       data-itchio="https://81-ansh.itch.io/flappy-bird">
-                     <img src="Projects/FlappyBird/FlappyBird_Logo.png" alt="FlappyBird project Logo">
+                     <img src="Projects/FlappyBird/FlappyBird_Logo.webp" alt="FlappyBird project Logo">
                      <h3>Flappy Bird</h3>
                      <p class="project-tech">
                          Unreal Engine / C++ / Blueprints
@@ -252,7 +314,7 @@
                       <p>Udemy • 106 Hours</p>
                       <a href="javascript:void(0)"
                          class="view-cert-btn"
-                         data-cert="Certificates/Unreal_Engine_5_-_Gameplay_Ability_System_-_Top_Down_RPG.jpg"
+                         data-cert="Certificates/Unreal_Engine_5_-_Gameplay_Ability_System_-_Top_Down_RPG.webp"
                          data-verify="https://www.udemy.com/certificate/UC-7ea651a4-ebb3-4ec0-bee4-e639fafa727d/">
                           View Certificate
                       </a>
@@ -263,7 +325,7 @@
                       <p>Udemy • 65 Hours</p>
                       <a href="javascript:void(0)"
                          class="view-cert-btn"
-                         data-cert="Certificates/Unreal_Engine_5_C++_Multiplayer_Shooter.jpg"
+                         data-cert="Certificates/Unreal_Engine_5_C++_Multiplayer_Shooter.webp"
                          data-verify="https://www.udemy.com/certificate/UC-ab3f3a30-9e6f-4cb3-b019-ea75b40e5d27/">
                           View Certificate
                       </a>
@@ -275,9 +337,9 @@
 
 
       <div class="cert-popup" id="certPopup">
-          <span class="cert-close">&times;</span>
+          <span class="cert-close" role="button" aria-label="Close certificate">&times;</span>
           <img id="certImage" src="" alt="Certificate">
-          <a id="verifyBtn" class="verify-btn" target="_blank">
+          <a id="verifyBtn" class="verify-btn" target="_blank" rel="noopener noreferrer">
               Verify Certificate
           </a>
       </div>
@@ -287,19 +349,19 @@
           <div class="container">
               <h2 class="section-title">CONTACT</h2>
               <div class="contact-icons">
-                  <a href="https://github.com/81-ansh" target="_blank">
+                  <a href="https://github.com/81-ansh" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
                       <i class="fab fa-github"></i>
                   </a>
-                  <a href="https://www.linkedin.com/in/ansh-sharma-a19296276/" target="_blank">
+                  <a href="https://www.linkedin.com/in/ansh-sharma-a19296276/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
                       <i class="fab fa-linkedin"></i>
                   </a>
-                  <a href="https://discord.com/users/1161526911936241737" target="_blank">
+                  <a href="https://discord.com/users/1161526911936241737" target="_blank" rel="noopener noreferrer" aria-label="Discord profile">
                       <i class="fab fa-discord"></i>
                   </a>
               </div>
               <div class="contact-email">
                   <span>EMAIL</span>
-                  <p>81anshsharma@gmail.com</p>
+                  <p><a href="mailto:81anshsharma@gmail.com">81anshsharma@gmail.com</a></p>
               </div>
           </div>
       </section>
@@ -307,6 +369,6 @@
       
   </main>
 
-  <script src="script.js"></script>
+  <script defer src="script.js"></script>
 </body>
 </html>
