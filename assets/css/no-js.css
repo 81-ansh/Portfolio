@@ -1,0 +1,2 @@
+/* Shown only when JavaScript is disabled: reveal content that would otherwise wait for an animation */
+.reveal { opacity: 1; transform: none; }

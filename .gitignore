@@ -1,6 +1,10 @@
-.vs
-.idea
-Old
+# editors / OS
+.vs/
+.idea/
+.vscode/
 .DS_Store
 Thumbs.db
-node_modules
+
+# tools
+node_modules/
+__pycache__/

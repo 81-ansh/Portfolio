@@ -1,0 +1,427 @@
+/* ==========================================================================
+   PROJECT PAGE: media gallery, details panel, links
+   (only loaded by project.html)
+   ========================================================================== */
+
+/* ========================= */
+
+/******** PROJECT BUTTONS ****/
+
+/* ========================= */
+
+.project-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 1.5rem;
+}
+
+.project-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: 2px solid var(--accent);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-size: 0.9rem;
+    font-family: var(--font-main);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    max-width: 180px;
+}
+
+.project-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(139, 92, 246, 0.3);
+}
+
+.project-btn i {
+    font-size: 1rem;
+}
+
+.project-popup-content{
+    background:#010101;
+    border:2px solid var(--accent);
+    border-radius:20px;
+    padding:2rem;
+    max-width:1000px;
+    width:90%;
+    display:flex;
+    gap:2rem;
+    text-align:left;
+}
+
+.project-left,
+.project-right{
+    flex:1;
+    min-width:0;
+}
+
+.project-left{
+    display:flex;
+    flex-direction:column;
+}
+
+/* Details */
+
+.project-details {
+    padding: 1.5rem;
+}
+
+.project-details h2 {
+    font-family: var(--font-display);
+    margin-bottom: 0.5rem;
+}
+
+.project-details h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.project-details p,
+.project-details ul {
+    color: #ADADAD;
+    user-select: none;
+    font-size: 0.95rem;
+    max-width: 600px;
+    margin: auto;
+}
+
+.project-details ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+}
+
+.accent-title {
+    color: var(--accent);
+}
+
+.grey-text {
+    color: grey;
+}
+
+/* ========================= */
+
+/*** PROJECT DETAIL PAGE ****/
+
+/* ========================= */
+
+body.project-page {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.project-detail-page {
+    padding-top: 4.5rem;
+    padding-bottom: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-detail-section {
+    padding-top: 1.5rem;
+    padding-bottom: 0;
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.project-detail-section .container {
+    flex: 1;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+}
+
+.project-detail-layout {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    max-width: none;
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    align-items: stretch;
+}
+
+.project-left {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 70%;
+    overflow: hidden;
+    min-height: 0;
+    justify-content: center;
+}
+
+.project-right {
+    flex: 0 0 30%;
+    overflow-y: auto;
+    height: 100%;
+    scrollbar-width: none;
+}
+
+.project-right::-webkit-scrollbar {
+    display: none;
+}
+
+.project-media-main {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    max-height: none;
+}
+
+.media-main-image,
+.media-main-frame {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    background: #000;
+}
+
+.media-main-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    cursor: zoom-in;
+}
+
+.media-main-frame {
+    border: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+.media-strip-inner {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    flex: 0 1 auto;
+    min-width: 0;
+    scrollbar-width: none;
+    scrollbar-color: var(--accent) transparent;
+    scroll-behavior: smooth;
+}
+
+.project-media-strip {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+}
+
+.media-thumb-button {
+    border: 2px solid transparent;
+    background: transparent;
+    padding: 0;
+    border-radius: 8px;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.media-thumb-button.active {
+    border-color: var(--accent);
+}
+
+.media-thumb-image {
+    width: 140px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+}
+
+.media-thumb-video {
+    position: relative;
+    width: 140px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.media-thumb-icon {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--accent);
+    font-size: 1.5rem;
+}
+
+.media-arrow {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    background: var(--accent);
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+
+.media-arrow i {
+    font-size: 1rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 1200px) {
+    body.project-page {
+        overflow: auto;
+        height: auto;
+    }
+    .project-detail-page {
+        height: auto;
+        overflow: visible;
+    }
+    .project-detail-section {
+        overflow: visible;
+        height: auto;
+    }
+    .project-detail-section .container {
+        height: auto;
+        overflow: visible;
+    }
+    .project-detail-layout {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+    .project-left {
+        flex: 1 1 auto;
+        overflow: visible;
+    }
+    .project-right {
+        flex: 1 1 auto;
+        height: auto;
+        overflow: visible;
+    }
+}
+
+@media (max-width: 900px) {
+    .media-thumb-image {
+        width: 100px;
+        height: 60px;
+    }
+    .media-thumb-video {
+        width: 100px;
+        height: 60px;
+    }
+    .media-arrow {
+        width: 32px;
+        height: 32px;
+    }
+    .media-arrow i {
+        font-size: 0.8rem;
+    }
+    .project-popup-content {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 550px) {
+    .media-thumb-image {
+        width: 80px;
+        height: 45px;
+    }
+    .media-thumb-video {
+        width: 80px;
+        height: 45px;
+    }
+    .media-arrow {
+        width: 28px;
+        height: 28px;
+    }
+    .media-arrow i {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-height: 800px) and (min-width: 1200px) {
+    .media-main-image {
+        object-fit: contain;
+        max-height: 45vh;
+    }
+    .media-main-frame {
+        max-height: 45vh;
+    }
+    .media-thumb-image {
+        width: 100px;
+        height: 55px;
+    }
+    .media-thumb-video {
+        width: 100px;
+        height: 55px;
+    }
+    .project-media-strip {
+        margin-bottom: 0.5rem;
+    }
+    .project-links {
+        margin-top: 0.75rem;
+    }
+    .project-details {
+        padding: 0.75rem;
+    }
+}
+
+/* Full-screen zoomed screenshot (opened by clicking the main image) */
+.image-zoom {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.9);
+    cursor: zoom-out;
+    animation: fadeIn 0.2s ease;
+}
+
+.image-zoom img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    object-fit: contain;
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.3);
+}
+
+/* Shown when project.html is opened with an unknown project id */
+.project-not-found {
+    grid-column: 1 / -1;
+    padding: 4rem 0;
+    text-align: center;
+}

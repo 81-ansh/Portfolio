@@ -1,0 +1,269 @@
+/* ==========================================================================
+   HEADER: top bar, navigation, mobile menu (used on every page)
+   ========================================================================== */
+
+.site-header {
+    position: fixed; /* Pins the navbar to the screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Ensures it stays on top of all other content */
+    padding: 0.5rem 0 0.2rem 0; /* Removed horizontal padding */
+    background: rgba(0, 0, 0, 0); /* almost clear frosted */
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.nav-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Changed to flex-start to allow margin-left:auto on nav */
+    width: 92%;
+    max-width: 1400px; /* Matches .container */
+    margin: 0 auto; /* Centers it */
+    padding: 0 2rem; /* Added horizontal padding here */
+    position: relative;
+}
+
+/* Logo Styles */
+
+.brand {
+    color: #ffffff !important;
+    transform: translateY(-6px);
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 2.5rem; /* Slightly larger like the image */
+    font-weight: 800;
+    letter-spacing: -1px; /* Tighter letter spacing for that "Bithell" look */
+    line-height: 1;
+    flex-shrink: 0;
+}
+
+.brand span {
+    color: #000000 !important;
+}
+
+.site-nav {
+    margin-left: auto; /* Pushes nav to the right */
+    display: flex;
+    align-items: center;
+    gap: 3.0rem;
+    font-family: 'Ethnocentric';
+}
+
+.site-nav a {
+    color: #ffffff;
+    user-select: none;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center; /* vertical centering */
+    line-height: 1;
+    transition: color 0.2s ease;
+}
+
+/* Underline effect for 'Home' or Active */
+
+.site-nav a.active {
+    color: #8B5CF6;
+}
+
+.menu-btn {
+    display: none;
+    background: transparent;
+    user-select: none;
+    border: none;
+    margin-left: auto;
+    color: #ffffff;
+    padding: 0.25rem 0.5rem;
+    font-family: 'Ethnocentric';
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.site-nav.open ~ .menu-btn {
+    user-select: none;
+    color: var(--accent);
+}
+
+.nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(2, 6, 16, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    z-index: 9997;
+    transition: none;
+}
+
+.nav-overlay.open {
+    display: block;
+    animation: menuFadeIn 0.4s ease forwards;
+}
+
+@keyframes menuFadeIn {
+    from {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+}
+
+@keyframes linkFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes linkFadeOut {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+/* Update the Overlay Closing State */
+
+.nav-overlay.closing {
+    display: block !important;
+    /* Force the initial 'Open' state so it doesn't snap to 0 before starting */
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    /* Animation: Wait 0.3s for links, then fade over 0.4s */
+    animation: menuFadeOut 0.4s ease-out 0.3s forwards;
+}
+
+/* Update the Nav Closing State */
+
+.site-nav.closing {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 9998;
+    pointer-events: none;
+}
+
+.site-nav.closing a {
+    font-size: 2rem !important;
+    opacity: 1;
+    animation: linkFadeOut 0.3s ease-in forwards !important;
+}
+
+.site-nav.closing a:nth-child(1) { animation-delay: 0s !important; }
+
+.site-nav.closing a:nth-child(2) { animation-delay: 0.05s !important; }
+
+.site-nav.closing a:nth-child(3) { animation-delay: 0.1s !important; }
+
+.site-nav.closing a:nth-child(4) { animation-delay: 0.15s !important; }
+
+.site-nav.closing a:nth-child(5) { animation-delay: 0.2s !important; }
+
+.site-nav.closing a:nth-child(6) { animation-delay: 0.25s !important; }
+.site-nav.closing a:nth-child(7) { animation-delay: 0.3s !important; }
+
+@keyframes menuFadeOut {
+    0% {
+        background: rgba(0, 0, 0, 0.9);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+    }
+    100% {
+        background: rgba(0, 0, 0, 0);
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .site-nav {
+        gap: 2rem;
+    }
+    .brand {
+        font-size: 2.2rem;
+    }
+    .nav-wrap {
+        width: 92%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .site-nav {
+        gap: 1.5rem;
+    }
+    .brand {
+        font-size: 2rem;
+    }
+    .nav-wrap {
+        width: 92%;
+        padding: 0 1.5rem;
+    }
+}
+
+@media (max-width: 900px) {
+    .nav-wrap {
+        padding: 0 1rem;
+        width: 100%;
+    }
+    .site-nav {
+        display: none;
+        pointer-events: none;
+    }
+    .site-nav.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        inset: 0;
+        background: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        z-index: 9998;
+        pointer-events: auto;
+    }
+    .site-nav.open a {
+        font-size: 2rem;
+        opacity: 0;
+        animation: linkFadeIn 0.4s ease forwards;
+    }
+    .site-nav.open a:nth-child(1) { animation-delay: 0.15s; }
+    .site-nav.open a:nth-child(2) { animation-delay: 0.25s; }
+    .site-nav.open a:nth-child(3) { animation-delay: 0.35s; }
+    .site-nav.open a:nth-child(4) { animation-delay: 0.45s; }
+    .site-nav.open a:nth-child(5) { animation-delay: 0.55s; }
+    .site-nav.open a:nth-child(6) { animation-delay: 0.65s; }
+    .site-nav.open a:nth-child(7) { animation-delay: 0.75s; }
+    .menu-btn {
+        display: block;
+        margin-left: auto;
+        cursor: pointer;
+    }
+}

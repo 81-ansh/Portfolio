@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://81-ansh.github.io/Portfolio/sitemap.xml

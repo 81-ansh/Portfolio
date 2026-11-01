@@ -1,0 +1,227 @@
+/* ==========================================================================
+   BASE: fonts, design tokens, reset, shared components
+   Loaded on every page. Page-specific styles live in header.css, home.css
+   and project-detail.css.
+   ========================================================================== */
+
+/* ---- Fonts (self-hosted, so no request to Google is needed) ---- */
+@font-face { font-family: 'Ethnocentric'; src: url('../fonts/ethnocentric.woff2') format('woff2'); font-weight: normal; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Grotesk'; src: url('../fonts/space-grotesk-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Grotesk'; src: url('../fonts/space-grotesk-latin-500-normal.woff2') format('woff2'); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Grotesk'; src: url('../fonts/space-grotesk-latin-600-normal.woff2') format('woff2'); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Space Grotesk'; src: url('../fonts/space-grotesk-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Orbitron'; src: url('../fonts/orbitron-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Orbitron'; src: url('../fonts/orbitron-latin-700-normal.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+@font-face { font-family: 'Archivo Black'; src: url('../fonts/archivo-black-latin-400-normal.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+
+/* ---- Icons: a trimmed copy of Font Awesome Free (only the icons this site uses).
+        Icons: CC BY 4.0, Fonts: SIL OFL 1.1 - https://fontawesome.com/license/free ---- */
+@font-face { font-family: 'FA Solid'; src: url('../fonts/fa-solid-subset.woff2') format('woff2'); font-weight: 900; font-style: normal; font-display: block; }
+@font-face { font-family: 'FA Brands'; src: url('../fonts/fa-brands-subset.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: block; }
+
+.fa-solid, .fab {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.fa-solid { font-family: 'FA Solid'; font-weight: 900; }
+.fab { font-family: 'FA Brands'; font-weight: 400; }
+.fa-bars::before { content: "\f0c9"; }
+.fa-calendar::before { content: "\f133"; }
+.fa-location-dot::before { content: "\f3c5"; }
+.fa-chevron-left::before { content: "\f053"; }
+.fa-chevron-right::before { content: "\f054"; }
+.fa-play::before { content: "\f04b"; }
+.fa-github::before { content: "\f09b"; }
+.fa-linkedin::before { content: "\f08c"; }
+.fa-discord::before { content: "\f392"; }
+.fa-itch-io::before { content: "\f83a"; }
+
+/* ---- Design tokens, reset and shared components ---- */
+
+:root {
+    /* Updated Palette: Deep Void & Neon Green */
+    --bg: #020610;
+    --surface: #0a1428;
+    --surface-2: #101e3a;
+    --text: #ffffff;
+    --muted: #8899a6;
+    --line: rgba(139, 92, 246, 0.5);
+    --accent: #8B5CF6;
+    /* Typography */
+    --font-main: "Space Grotesk", sans-serif;
+    --font-secondary: "Ethnocentric", sans-serif;
+    --font-display: "Orbitron", sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    scrollbar-width: none;
+    margin: 0;
+    font-family: var(--font-main);
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.65;
+    overflow-x: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+h2, h3 {
+    user-select: none;
+}
+
+/* --- LAYOUT UTILS --- */
+
+.container {
+    max-width: 1400px;
+    width: 92%;
+    margin: 0 auto;
+}
+
+.btn {
+    display: inline-block;
+    user-select: none;
+    padding: 0.9rem 2rem;
+    border-radius: 4px; /* Tech sharp corners */
+    text-decoration: none;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    box-shadow: inset 0 0 0 0px #000, 0 0 0 2px var(--accent);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    box-shadow: inset 0 0 0 4px #000, 0 0 0 2px var(--accent);
+}
+
+.btn-outline {
+    font-weight: 700;
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    transition: box-shadow 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline:hover {
+    box-shadow: inset 0 0 0 4px var(--accent);
+    color: var(--accent);
+}
+
+/* --- SECTIONS COMMON --- */
+
+.section {
+    padding: 5rem 0;
+    position: relative;
+}
+
+.section-title {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    margin-bottom: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--line), transparent);
+    margin-left: 1rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* The HTML "hidden" attribute must win over any display value set elsewhere */
+[hidden] {
+    display: none !important;
+}
+
+/* "Skip to content" link: invisible until a keyboard user tabs to it */
+.skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -4rem;
+    z-index: 10000;
+    padding: 0.6rem 1rem;
+    background: var(--accent);
+    color: #000;
+    font-family: var(--font-display);
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.skip-link:focus {
+    top: 1rem;
+}
+
+/* --- ANIMATIONS --- */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.site-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -5; /* Behind everything */
+    background: #010101; /* Deep Blue/Black Gradient */
+    pointer-events: none;
+}
+
+/* Visible keyboard focus */
+
+a:focus-visible, button:focus-visible {
+    outline: 2px solid #8B5CF6;
+    outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
