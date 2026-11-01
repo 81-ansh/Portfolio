@@ -4,7 +4,7 @@
  */
 import { lockScroll } from './dom.js';
 
-const MOBILE_QUERY = '(max-width: 900px)';
+const MOBILE_QUERY = '(max-width: 1000px)';
 const CLOSE_ANIMATION_MS = 700; // must match the closing animation in header.css
 
 export function initMobileMenu() {

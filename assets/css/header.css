@@ -175,18 +175,13 @@
     animation: linkFadeOut 0.3s ease-in forwards !important;
 }
 
-.site-nav.closing a:nth-child(1) { animation-delay: 0s !important; }
-
-.site-nav.closing a:nth-child(2) { animation-delay: 0.05s !important; }
-
-.site-nav.closing a:nth-child(3) { animation-delay: 0.1s !important; }
-
-.site-nav.closing a:nth-child(4) { animation-delay: 0.15s !important; }
-
-.site-nav.closing a:nth-child(5) { animation-delay: 0.2s !important; }
-
-.site-nav.closing a:nth-child(6) { animation-delay: 0.25s !important; }
-.site-nav.closing a:nth-child(7) { animation-delay: 0.3s !important; }
+.site-nav.open a:nth-child(1) { animation-delay: 0.10s; }
+.site-nav.open a:nth-child(2) { animation-delay: 0.16s; }
+.site-nav.open a:nth-child(3) { animation-delay: 0.22s; }
+.site-nav.open a:nth-child(4) { animation-delay: 0.28s; }
+.site-nav.open a:nth-child(5) { animation-delay: 0.34s; }
+.site-nav.open a:nth-child(6) { animation-delay: 0.40s; }
+.site-nav.open a:nth-child(7) { animation-delay: 0.46s; }
 
 @keyframes menuFadeOut {
     0% {
@@ -201,9 +196,12 @@
     }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1300px) {
     .site-nav {
         gap: 2rem;
+    }
+    .site-nav a {
+        font-size: 0.9rem;
     }
     .brand {
         font-size: 2.2rem;
@@ -213,9 +211,12 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1150px) {
     .site-nav {
-        gap: 1.5rem;
+        gap: 1.4rem;
+    }
+    .site-nav a {
+        font-size: 0.85rem;
     }
     .brand {
         font-size: 2rem;
@@ -226,7 +227,7 @@
     }
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1000px) {
     .nav-wrap {
         padding: 0 1rem;
         width: 100%;
